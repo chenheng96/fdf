@@ -6,67 +6,18 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:47:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/02 16:52:59 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/07 14:44:06 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft/libft.h"
-
-int	abs(int	n)
-{
-	if (n >= 0)
-		return (n);
-	return (-n);
-}
 
 void	my_mlxpixelput(t_vars *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	draw_line(int x0, int y0, int x1, int y1, t_vars *data)
-{
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int error;
-	int e2;
-
-	sx = 0;
-	sy = 0;
-	dx = abs(x1 - x0);
-	dy = -abs(y1 - y0);
-	if (x1 > x0)
-		sx = 1;
-	if (y1 > y0)
-		sy = 1;
-	error = dx + dy;
-	while (1)
-	{
-		my_mlxpixelput(data, x0, y0, 0xFF0000);
-		if (x0 == x1 && y0 == y1)
-			break ;
-		e2 = 2 * error;
-		if (e2 >= dy)
-		{
-			if (x0 == x1)
-				break ;
-			error += dy;
-			x0 += sx;
-		}
-		if (e2 <= dx)
-		{
-			if (y0 == y1)
-				break ;
-			error += dx;
-			y0 += sy;
-		}
-	}
+	*(unsigned int *)dst = color;
 }
 
 int	handle_key(int keycode, t_vars *vars)
@@ -78,16 +29,32 @@ int	handle_key(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars	vars;
+	t_data	data;
+	char	**map;
+	int		**map_coor;
 
+	if (argc != 2)
+	{
+		ft_putnbr_fd("Usage:./fdf map", 1);
+		return (-1);
+	}
+	if (parse_map(argv[1], map, data) == -1)
+		return (-1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1000, 1000, "FDF");
-	vars.img = mlx_new_image(vars.mlx, 1000, 1000);
-	vars.addr = mlx_get_data_addr(vars.img, &vars.bits_per_pixel, &vars.line_length, &vars.endian);
-	draw_line(100, 100, 400, 200, &vars);
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
+	vars.img = mlx_new_image(vars.mlx, 1920, 1080);
+	vars.addr = mlx_get_data_addr(vars.img, &vars.bits_per_pixel,
+			&vars.line_length, &vars.endian);
+	fill_map(map, data, vars);
+	data.x0 = 100;
+	data.y0 = 100;
+	data.x1 = 50;
+	data.y1 = 50;
+	draw_line1(&data, &vars, 0xFF0000);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, handle_key, &vars);
+	mlx_hook(vars.win, 2, 1L << 0, handle_key, &vars);
 	mlx_loop(vars.mlx);
 }
