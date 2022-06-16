@@ -9,7 +9,7 @@ RM := rm -f
 all: ${FDF}
 
 ${FDF}: ${LIBFT}
-	${CC} ${CFLAGS} -I /usr/local/include ${FDF}.c draw_line.c parse_map.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit ${LIBFT} -o ${FDF}
+	${CC} ${CFLAGS} -I /usr/local/include ${FDF}.c draw_line.c parse_map.c matrix_multiplication.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit ${LIBFT} -o ${FDF}
 
 ${LIBFT}:
 	make -C libft
@@ -24,4 +24,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

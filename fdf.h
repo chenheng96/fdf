@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/07 13:20:56 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:18:00 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 # define FDF_H
 
 # include <mlx.h>
-# include <fcnth.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
+typedef	struct s_matrix {
+	size_t	row;
+	size_t	col;
+	double	*data;
+}				t_matrix;
 
 typedef struct s_vars {
 	void	*mlx;
@@ -44,11 +50,15 @@ typedef struct s_data {
 	int	y;
 }				t_data;
 
-void	my_mlxpixelput(t_vars *data, int x, int y, int color);
-int		handle_key(int keycode, t_vars *vars);
-int		abs(int n);
-void	draw_line1(t_data *data, t_vars *vars, int color);
-void	draw_line2(t_data *data, t_vars *vars, int color);
-int 	**parse_map(char *str, int **map);
+void		my_mlxpixelput(t_vars *data, int x, int y, int color);
+int			handle_key(int keycode, t_vars *vars);
+int			abs(int n);
+void		draw_line1(t_data *data, t_vars *vars, int color);
+void		draw_line2(t_data *data, t_vars *vars, int color);
+int 		**parse_map(char *str, char ***map, t_data *data, int **map_coor);
+t_matrix	*ft_matrix_new(size_t row, size_t col);
+void		ft_matrix_del(t_matrix *matrix);
+t_matrix	*ft_mat_identity(size_t n);
+t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans);
 
 #endif

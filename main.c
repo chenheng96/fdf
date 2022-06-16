@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 		arr[i] = ft_atoi(str[i]);
 	}
 	i = -1;
-	while (++i < 3)
+	while (++i < 5)
 		printf("arr[%i] is %i\n", i, arr[i]);
+	free(arr);
 }
