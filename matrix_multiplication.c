@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 05:57:45 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/17 07:07:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,29 +85,32 @@ To multiply two matrices and return a new matrix with the result.
 */
 t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans)
 {
-	size_t		i;
-	size_t		j;
-	size_t		k;
-	size_t		num;
+	size_t		mat_i;
+	size_t		arr_i;
+	size_t		trans_i;
+	size_t		trans_row_offset;
 	t_matrix	*matrix;
 
 	matrix = ft_matrix_new(arr->row, trans->col);
-	i = 0;
-	num = 0;
-	while (++num <= arr->row)
+	trans_row_offset = -1;
+	while (++trans_row_offset < trans->row)
 	{
-		k = 0;
-		while (i < trans->col * num)
+		mat_i = -1;
+		arr_i = trans_row_offset;
+		trans_i = trans_row_offset * trans->col - 1;
+		while (++mat_i < (arr->row * trans->col))
 		{
-			j = (num - 1) * arr->col - 1;
-			while (++j < trans->row * num)
+			matrix->data[mat_i] += arr->data[arr_i] * trans->data[++trans_i];
+			if ((mat_i % trans->col) == trans->row)
 			{
-				matrix->data[i] += arr->data[j] * trans->data[k];
-				k += trans->col;
+				arr_i += arr->col;
+				trans_i -= trans->col;
 			}
-			k -= trans->row * trans->col - 1;
-			i++;
 		}
 	}
 	return (matrix);
 }
+
+// printf("(arr->data[%i] = %i ) * ", (int)j, (int)arr->data[j]);
+// printf("(trans->data[%i] = %i)", (int)k, (int)trans->data[k]);
+// printf(" = matrix->data[%i] = %i\n", (int)i, (int)matrix->data[i]);
