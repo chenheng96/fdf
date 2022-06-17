@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 07:16:56 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/17 08:23:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,38 @@ t_matrix	*ft_mat_identity(size_t n)
 }
 
 /*
+To check if matrix is initiated. If not, perror msg and exit program.
+*/
+void	check_mat(t_matrix *matrix)
+{
+	if (matrix == NULL)
+	{
+		perror("Matrix is NULL.");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/*
+To check if row/col is within the matrix. If not, perror msg and exit program.
+*/
+void	check_row_col(t_matrix *matrix, size_t row, size_t col)
+{
+	if (row >= matrix->row || col >= matrix->col)
+	{
+		// printf("%li %li %li %li\n", row, matrix->row, col, matrix->col);
+		perror("Row/col exceeded row/col of matrix.");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/*
 To get the element in row and column from the matrix.
 */
 double	get_element(t_matrix *matrix, size_t row, size_t col)
 {
-	printf("%i\n", (int)matrix->data[row * matrix->col + col]);
-	return (matrix->data[row * matrix->col + col]);
+	check_mat(matrix);
+	check_row_col(matrix, row, col);
+	return (printf("%i\n", (int)matrix->data[row * matrix->col + col]));
 }
 
 /*
@@ -73,40 +99,41 @@ To add the value to the element in row and column in the matrix.
 */
 void	update_element(t_matrix *matrix, size_t row, size_t col, double value)
 {
-	if (matrix == NULL)
-		return ;
-	if (row >= matrix->row || col >= matrix->col)
-		return ;
+	check_mat(matrix);
+	check_row_col(matrix, row, col);
 	matrix->data[row * matrix->col + col] += value;
 }
 
 /*
 To multiply two matrices and return a new matrix with the result.
 */
-t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans)
+t_matrix	*matrix_multiplication(t_matrix *A, t_matrix *B)
 {
 	size_t		mat_i;
-	size_t		arr_i;
-	size_t		trans_i;
-	size_t		trans_row_offset;
+	size_t		A_i;
+	size_t		B_i;
+	size_t		B_row_offset;
 	t_matrix	*matrix;
 
-	if (arr->col != trans->row)
-		return (NULL);
-	matrix = ft_matrix_new(arr->row, trans->col);
-	trans_row_offset = -1;
-	while (++trans_row_offset < trans->row)
+	if (A->col != B->row)
+	{
+		perror("Multiplication of matrices not possible");
+		exit(EXIT_FAILURE);
+	}
+	matrix = ft_matrix_new(A->row, B->col);
+	B_row_offset = -1;
+	while (++B_row_offset < B->row)
 	{
 		mat_i = -1;
-		arr_i = trans_row_offset;
-		trans_i = trans_row_offset * trans->col - 1;
-		while (++mat_i < (arr->row * trans->col))
+		A_i = B_row_offset;
+		B_i = B_row_offset * B->col - 1;
+		while (++mat_i < (A->row * B->col))
 		{
-			matrix->data[mat_i] += arr->data[arr_i] * trans->data[++trans_i];
-			if ((mat_i % trans->col) == trans->row)
+			matrix->data[mat_i] += A->data[A_i] * B->data[++B_i];
+			if ((mat_i % B->col) == B->row)
 			{
-				arr_i += arr->col;
-				trans_i -= trans->col;
+				A_i += A->col;
+				B_i -= B->col;
 			}
 		}
 	}
