@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 07:10:56 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/17 07:16:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	update_element(t_matrix *matrix, size_t row, size_t col, double value)
 {
 	if (matrix == NULL)
 		return ;
-	if ((row + 1) > matrix->row || (col + 1) > matrix->col)
+	if (row >= matrix->row || col >= matrix->col)
 		return ;
 	matrix->data[row * matrix->col + col] += value;
 }
