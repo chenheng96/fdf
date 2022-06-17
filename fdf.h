@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/16 15:18:00 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/17 02:44:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+// # include <mlx.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -60,5 +60,7 @@ t_matrix	*ft_matrix_new(size_t row, size_t col);
 void		ft_matrix_del(t_matrix *matrix);
 t_matrix	*ft_mat_identity(size_t n);
 t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans);
+double		get_element(t_matrix *matrix, size_t row, size_t col);
+void		update_element(t_matrix *matrix, size_t row, size_t col, double value);
 
 #endif

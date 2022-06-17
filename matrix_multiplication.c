@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/16 15:49:39 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/17 05:57:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 /*
 To allocate memory for matrix struct and fill in row and col info of matrix
@@ -56,6 +57,27 @@ t_matrix	*ft_mat_identity(size_t n)
 	while (++index < n)
 		matrix->data[index * n + index] = 1;
 	return (matrix);
+}
+
+/*
+To get the element in row and column from the matrix.
+*/
+double	get_element(t_matrix *matrix, size_t row, size_t col)
+{
+	printf("%i\n", (int)matrix->data[row * matrix->col + col]);
+	return (matrix->data[row * matrix->col + col]);
+}
+
+/*
+To add the value to the element in row and column in the matrix.
+*/
+void	update_element(t_matrix *matrix, size_t row, size_t col, double value)
+{
+	if (matrix == NULL)
+		return ;
+	if ((row + 1) > matrix->row || (col + 1) > matrix->col)
+		return ;
+	matrix->data[row * matrix->col + col] += value;
 }
 
 /*
