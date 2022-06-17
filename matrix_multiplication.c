@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 07:07:44 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/17 07:10:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans)
 	size_t		trans_row_offset;
 	t_matrix	*matrix;
 
+	if (arr->col != trans->row)
+		return (NULL);
 	matrix = ft_matrix_new(arr->row, trans->col);
 	trans_row_offset = -1;
 	while (++trans_row_offset < trans->row)
