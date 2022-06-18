@@ -49,6 +49,7 @@ void	test_ft_mat_new(void)
 	if (mat->row != 2 || mat->col != 3)
 	{
 		printf("ft_mat_new: KO\n");
+		ft_mat_del(mat);
 		return ;
 	}
 	i = -1;
@@ -57,6 +58,7 @@ void	test_ft_mat_new(void)
 		if (mat->data[i] != 0)
 		{
 			printf("ft_mat_new: KO\n");
+			ft_mat_del(mat);
 			return ;
 		}
 	}
