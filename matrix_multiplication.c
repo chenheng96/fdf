@@ -3,143 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 16:11:22 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 08:23:15 by marvin           ###   ########.fr       */
+/*   Created: 2022/06/18 05:30:20 by cchong            #+#    #+#             */
+/*   Updated: 2022/06/18 06:07:16 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 /*
-To allocate memory for matrix struct and fill in row and col info of matrix
+To allocate memory for mat struct and fill in row and col info of mat
 as well as allocate memory for the array and change all of the values to 0.
 */
-t_matrix	*ft_matrix_new(size_t row, size_t col)
+t_mat	*ft_mat_new(size_t row, size_t col)
 {
-	t_matrix	*matrix;
+	t_mat	*mat;
 
 	if (row < 1 || col < 1)
-		return (NULL);
-	matrix = malloc(sizeof(t_matrix));
-	if (matrix == NULL)
-		return (NULL);
-	matrix->row = row;
-	matrix->col = col;
-	matrix->data = ft_calloc(row * col, sizeof(double *));
-	if (matrix->data == NULL)
-		return (NULL);
-	return (matrix);
+		ft_perror("ft_mat_new error");
+	mat = malloc(sizeof(t_mat));
+	if (mat == NULL)
+		ft_perror("ft_mat_new error");
+	mat->row = row;
+	mat->col = col;
+	mat->data = ft_calloc(row * col, sizeof(double *));
+	if (mat->data == NULL)
+		ft_perror("ft_mat_new error");
+	return (mat);
 }
 
 /*
-To free the memory in matrix's data and free memory of matrix.
+To free the memory in mat's data and free memory of mat.
 */
-void	ft_matrix_del(t_matrix *matrix)
+void	ft_mat_del(t_mat *mat)
 {
-	if (matrix->data != NULL)
-		free(matrix->data);
-	free(matrix);
+	free(mat->data);
+	free(mat);
 }
 
 /*
-To allocate memory for a new matrix and change its value to identity matrix.
+To allocate memory for a new mat and change its value to identity mat.
 */
-t_matrix	*ft_mat_identity(size_t n)
+t_mat	*ft_mat_identity(size_t n)
 {
-	t_matrix	*matrix;
-	size_t		index;
+	t_mat	*mat;
+	size_t	index;
 
-	matrix = ft_matrix_new(n, n);
+	mat = ft_mat_new(n, n);
 	index = -1;
 	while (++index < n)
-		matrix->data[index * n + index] = 1;
-	return (matrix);
+		mat->data[(index + 1) * n] = 1;
+	return (mat);
 }
 
 /*
-To check if matrix is initiated. If not, perror msg and exit program.
+To multiply two matrices and update matrix A with the result.
 */
-void	check_mat(t_matrix *matrix)
+void	*ft_mat_mul(t_mat *A, t_mat *B)
 {
-	if (matrix == NULL)
-	{
-		perror("Matrix is NULL.");
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*
-To check if row/col is within the matrix. If not, perror msg and exit program.
-*/
-void	check_row_col(t_matrix *matrix, size_t row, size_t col)
-{
-	if (row >= matrix->row || col >= matrix->col)
-	{
-		// printf("%li %li %li %li\n", row, matrix->row, col, matrix->col);
-		perror("Row/col exceeded row/col of matrix.");
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*
-To get the element in row and column from the matrix.
-*/
-double	get_element(t_matrix *matrix, size_t row, size_t col)
-{
-	check_mat(matrix);
-	check_row_col(matrix, row, col);
-	return (printf("%i\n", (int)matrix->data[row * matrix->col + col]));
-}
-
-/*
-To add the value to the element in row and column in the matrix.
-*/
-void	update_element(t_matrix *matrix, size_t row, size_t col, double value)
-{
-	check_mat(matrix);
-	check_row_col(matrix, row, col);
-	matrix->data[row * matrix->col + col] += value;
-}
-
-/*
-To multiply two matrices and return a new matrix with the result.
-*/
-t_matrix	*matrix_multiplication(t_matrix *A, t_matrix *B)
-{
-	size_t		mat_i;
-	size_t		A_i;
-	size_t		B_i;
-	size_t		B_row_offset;
-	t_matrix	*matrix;
+	size_t	i;
+	size_t	j;
+	double	val;
+	t_mat	*mat;
 
 	if (A->col != B->row)
+		ft_perror("mat mul error");
+	mat = ft_mat_new(A->row, B->col);
+	i = -1;
+	while (++i < A->row * B->col)
 	{
-		perror("Multiplication of matrices not possible");
-		exit(EXIT_FAILURE);
-	}
-	matrix = ft_matrix_new(A->row, B->col);
-	B_row_offset = -1;
-	while (++B_row_offset < B->row)
-	{
-		mat_i = -1;
-		A_i = B_row_offset;
-		B_i = B_row_offset * B->col - 1;
-		while (++mat_i < (A->row * B->col))
+		val = 0;
+		j = -1;
+		while (++j < B->row)
 		{
-			matrix->data[mat_i] += A->data[A_i] * B->data[++B_i];
-			if ((mat_i % B->col) == B->row)
-			{
-				A_i += A->col;
-				B_i -= B->col;
-			}
+			val += ft_get_val(A, i / B->col, j) * ft_get_val(B, j, i % B->col);
+			ft_set_val(mat, i / B->col, i % B->col, val);
 		}
 	}
-	return (matrix);
+	ft_mat_del(A);
+	A = mat;
 }
-
-// printf("(arr->data[%i] = %i ) * ", (int)j, (int)arr->data[j]);
-// printf("(trans->data[%i] = %i)", (int)k, (int)trans->data[k]);
-// printf(" = matrix->data[%i] = %i\n", (int)i, (int)matrix->data[i]);
