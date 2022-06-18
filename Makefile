@@ -1,27 +1,41 @@
-FDF := fdf
+FDF		= fdf
+SRCS	= ft_mat_mul.c #fdf.c draw_line.c parse_map.c
 
-LIBFT := libft/libft.a
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
 
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -fsanitize=address
-RM := rm -f
+INCLUDE = -Iinclude -Ilibft #/usr/local/include
+LDFLAGS = -Llibft /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+LDLIBS	= -lft
 
-all: ${FDF}
+LIBFT	= libft/libft.a
 
-${FDF}: ${LIBFT}
-	${CC} ${CFLAGS} -I /usr/local/include ${FDF}.c draw_line.c parse_map.c matrix_multiplication.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit ${LIBFT} -o ${FDF}
+OBJS	= ${SRCS:.c=.o}
+
+all: 	${FDF}
+
+${FDF}: ${LIBFT} ${OBJS}
+		${CC} ${CFLAGS} -o ${FDF} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
 
 ${LIBFT}:
-	make -C libft
+		make -C libft
 
 clean:
-	${RM} *.o
-	make clean -C libft
+		${RM} *.o
+		make clean -C libft
 
 fclean:	clean
-	${RM} ${FDF}
-	make fclean -C libft
+		${RM} ${FDF}
+		make fclean -C libft
 
-re:	fclean all
+re:		fclean all
 
-.PHONY: all clean fclean re
+matrix:	${LIBFT}
+		${CC} matrix_multiplication.c test_matrix_multiplication.c matrix_helper.c fdf_helper.c -o matrix ${INCLUDE} -Llibft -lft
+		./matrix
+		${RM} matrix
+
+norm:
+		norminette *.c *.h
+
+.PHONY: all clean fclean re matrix libft norm
