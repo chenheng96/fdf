@@ -68,7 +68,7 @@ void	*ft_mat_mul(t_mat *A, t_mat *B)
 	t_mat	*mat;
 
 	if (A->col != B->row)
-		ft_perror("mat mul error");
+		ft_perror("ft_mat_mul error");
 	mat = ft_mat_new(A->row, B->col);
 	i = -1;
 	while (++i < A->row * B->col)
