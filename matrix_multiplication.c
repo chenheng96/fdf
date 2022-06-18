@@ -53,7 +53,7 @@ t_mat	*ft_mat_identity(size_t n)
 	mat = ft_mat_new(n, n);
 	index = -1;
 	while (++index < n)
-		mat->data[(index + 1) * n] = 1;
+		mat->data[index * n + index] = 1;
 	return (mat);
 }
 
