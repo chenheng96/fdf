@@ -6,13 +6,16 @@
 /*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:29:54 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/18 06:39:05 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/19 02:56:38 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
+/*
+To print out the matrix.
+*/
 void	print_mat(t_mat *mat)
 {
 	int	i = -1;
@@ -25,6 +28,9 @@ void	print_mat(t_mat *mat)
 	}
 }
 
+/*
+To compare the info in mat data struct.
+*/
 int	compare_mat(t_mat *A, t_mat *B)
 {
 	int	i;
@@ -40,6 +46,9 @@ int	compare_mat(t_mat *A, t_mat *B)
 	return (0);
 }
 
+/*
+To test ft_mat_new f(x).
+*/
 void	test_ft_mat_new(void)
 {
 	t_mat	*mat;
@@ -63,9 +72,32 @@ void	test_ft_mat_new(void)
 		}
 	}
 	printf("ft_mat_new: OK\n");
-	ft_mat_del(mat);
 }
 
+/*
+To test ft_mat_identity f(x).
+*/
+void	test_ft_mat_identity(void)
+{
+	t_mat	*A;
+	t_mat	*B;
+
+	A = ft_mat_identity(3);
+	B = ft_mat_new(3, 3);
+	B->data[0] = 1;
+	B->data[4] = 1;
+	B->data[8] = 1;
+	if (compare_mat(A, B) == 1)
+		printf("ft_mat_identity: KO\n");
+	else
+		printf("ft_mat_identity: OK\n");
+	ft_mat_del(A);
+	ft_mat_del(B);
+}
+
+/*
+Test1 of ft_mat_mul.
+*/
 void	test_ft_mat_mul1(void)
 {
 	t_mat	*A;
@@ -97,6 +129,9 @@ void	test_ft_mat_mul1(void)
 	ft_mat_del(D);
 }
 
+/*
+Test2 of ft_mat_mul.
+*/
 void	test_ft_mat_mul2(void)
 {
 	t_mat	*A;
@@ -137,6 +172,9 @@ void	test_ft_mat_mul2(void)
 	ft_mat_del(D);
 }
 
+/*
+Test3 of ft_mat_mul.
+*/
 void	test_ft_mat_mul3(void)
 {
 	t_mat	*A;
@@ -178,6 +216,7 @@ void	test_ft_mat_mul3(void)
 int	main(void)
 {
 	test_ft_mat_new();
+	test_ft_mat_identity();
 	test_ft_mat_mul1();
 	test_ft_mat_mul2();
 	test_ft_mat_mul3();
