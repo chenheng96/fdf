@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:30:20 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/18 06:07:16 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/19 04:04:10 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,25 @@ t_mat	*ft_mat_identity(size_t n)
 }
 
 /*
-To multiply two matrices and update matrix A with the result.
+To copy matrix A into matrix B.
 */
-void	*ft_mat_mul(t_mat *A, t_mat *B)
+void	ft_mat_cpy(t_mat *A, t_mat *B)
+{
+	size_t	i;
+
+	if (A->row == B->row || A->col == B->col)
+	{
+		while (++i < A->row *A->col)
+			B->data[i] = A->data[i];
+	}
+	else
+		ft_perror("ft_mat_cpy error\n");
+}
+
+/*
+To multiply two matrices and return new matrix with the result.
+*/
+t_mat	*ft_mat_mul(t_mat *A, t_mat *B)
 {
 	size_t	i;
 	size_t	j;
@@ -81,6 +97,5 @@ void	*ft_mat_mul(t_mat *A, t_mat *B)
 			ft_set_val(mat, i / B->col, i % B->col, val);
 		}
 	}
-	ft_mat_del(A);
-	A = mat;
+	return (mat);
 }
