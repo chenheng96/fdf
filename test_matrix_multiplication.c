@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:29:54 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/19 02:56:38 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/19 04:03:11 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ To print out the matrix.
 */
 void	print_mat(t_mat *mat)
 {
-	int	i = -1;
+	size_t	i = -1;
 
 	while (++i < mat->row * mat->col)
 	{
@@ -33,7 +33,7 @@ To compare the info in mat data struct.
 */
 int	compare_mat(t_mat *A, t_mat *B)
 {
-	int	i;
+	size_t	i;
 
 	i = -1;
 	if (A->row != B->row || A->col != B->col)
@@ -72,6 +72,7 @@ void	test_ft_mat_new(void)
 		}
 	}
 	printf("ft_mat_new: OK\n");
+	ft_mat_del(mat);
 }
 
 /*
@@ -104,8 +105,8 @@ void	test_ft_mat_mul1(void)
 	t_mat	*B;
 	t_mat	*C;
 	t_mat	*D;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = -1;
 	j = -1;
@@ -124,6 +125,7 @@ void	test_ft_mat_mul1(void)
 		printf("ft_mat_mul1: KO\n");
 	else
 		printf("ft_mat_mul1: OK\n");
+	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
 	ft_mat_del(D);
@@ -138,8 +140,8 @@ void	test_ft_mat_mul2(void)
 	t_mat	*B;
 	t_mat	*C;
 	t_mat	*D;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = -1;
 	j = -1;
@@ -167,6 +169,7 @@ void	test_ft_mat_mul2(void)
 		printf("ft_mat_mul2: KO\n");
 	else
 		printf("ft_mat_mul2: OK\n");
+	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
 	ft_mat_del(D);
@@ -181,8 +184,8 @@ void	test_ft_mat_mul3(void)
 	t_mat	*B;
 	t_mat	*C;
 	t_mat	*D;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = -1;
 	j = -1;
@@ -208,6 +211,7 @@ void	test_ft_mat_mul3(void)
 		printf("ft_mat_mul3: KO\n");
 	else
 		printf("ft_mat_mul3: OK\n");
+	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
 	ft_mat_del(D);
