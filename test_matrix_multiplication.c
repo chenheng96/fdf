@@ -122,9 +122,9 @@ void	test_ft_mat_mul1(void)
 		B->data[j] = j + 1;
 	C = ft_mat_mul(A, B);
 	if (compare_mat(C, D) == 1)
-		printf("ft_mat_mul1: KO\n");
+		printf("ft_mat_mul test 1: KO\n");
 	else
-		printf("ft_mat_mul1: OK\n");
+		printf("ft_mat_mul test 1: OK\n");
 	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
@@ -166,9 +166,9 @@ void	test_ft_mat_mul2(void)
 		B->data[j] = j + 1;
 	C = ft_mat_mul(A, B);
 	if (compare_mat(C, D) == 1)
-		printf("ft_mat_mul2: KO\n");
+		printf("ft_mat_mul test 2: KO\n");
 	else
-		printf("ft_mat_mul2: OK\n");
+		printf("ft_mat_mul test 2: OK\n");
 	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
@@ -208,9 +208,9 @@ void	test_ft_mat_mul3(void)
 		B->data[j] = j + 1;
 	C = ft_mat_mul(A, B);
 	if (compare_mat(C, D) == 1)
-		printf("ft_mat_mul3: KO\n");
+		printf("ft_mat_mul test 3: KO\n");
 	else
-		printf("ft_mat_mul3: OK\n");
+		printf("ft_mat_mul test 3: OK\n");
 	ft_mat_del(A);
 	ft_mat_del(B);
 	ft_mat_del(C);
