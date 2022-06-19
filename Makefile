@@ -5,7 +5,7 @@ CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
 
 INCLUDE = -Iinclude -Ilibft #/usr/local/include
-LDFLAGS = -Llibft /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+LDFLAGS = -Llibft #/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 LDLIBS	= -lft
 
 LIBFT	= libft/libft.a
@@ -31,9 +31,14 @@ fclean:	clean
 re:		fclean all
 
 matrix:	${LIBFT}
-		${CC} matrix_multiplication.c test_matrix_multiplication.c matrix_helper.c fdf_helper.c -o matrix ${INCLUDE} -Llibft -lft
+		${CC} matrix_multiplication.c test_matrix_multiplication.c matrix_helper.c fdf_helper.c -o matrix ${CFLAGS} ${INCLUDE} -Llibft -lft
 		./matrix
 		${RM} matrix
+
+affine:	${LIBFT}
+		${CC} affine_transformation.c test_affine_transformation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o affine ${CFLAGS} ${INCLUDE} -Llibft -lft
+		./affine
+		${RM} affine
 
 norm:
 		norminette *.c *.h
