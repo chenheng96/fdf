@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/17 02:44:31 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/19 04:00:36 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <stdio.h>
 # include "libft/libft.h"
 
-typedef	struct s_matrix {
+typedef	struct s_mat {
 	size_t	row;
 	size_t	col;
 	double	*data;
-}				t_matrix;
+}				t_mat;
 
 typedef struct s_vars {
 	void	*mlx;
@@ -50,17 +52,29 @@ typedef struct s_data {
 	int	y;
 }				t_data;
 
-void		my_mlxpixelput(t_vars *data, int x, int y, int color);
-int			handle_key(int keycode, t_vars *vars);
-int			abs(int n);
-void		draw_line1(t_data *data, t_vars *vars, int color);
-void		draw_line2(t_data *data, t_vars *vars, int color);
-int 		**parse_map(char *str, char ***map, t_data *data, int **map_coor);
-t_matrix	*ft_matrix_new(size_t row, size_t col);
-void		ft_matrix_del(t_matrix *matrix);
-t_matrix	*ft_mat_identity(size_t n);
-t_matrix	*matrix_multiplication(t_matrix *arr, t_matrix *trans);
-double		get_element(t_matrix *matrix, size_t row, size_t col);
-void		update_element(t_matrix *matrix, size_t row, size_t col, double value);
+// mlx functions
+void	my_mlxpixelput(t_vars *data, int x, int y, int color);
+int		handle_key(int keycode, t_vars *vars);
+
+// line drawing algorithm
+int		abs(int n);
+void	draw_line1(t_data *data, t_vars *vars, int color);
+void	draw_line2(t_data *data, t_vars *vars, int color);
+
+// map parsing
+int 	**parse_map(char *str, char ***map, t_data *data, int **map_coor);
+
+// matrix functions
+t_mat	*ft_mat_new(size_t row, size_t col);
+void	ft_mat_del(t_mat *mat);
+void	ft_mat_cpy(t_mat *A, t_mat *B);
+t_mat	*ft_mat_identity(size_t n);
+t_mat	*ft_mat_mul(t_mat *A, t_mat *B);
+double	ft_get_val(t_mat *mat, size_t row, size_t col);
+void	ft_set_val(t_mat *mat, size_t row, size_t col, double value);
+int		compare_mat(t_mat *A, t_mat *B);
+
+// general functions
+void	ft_perror(const char *s);
 
 #endif
