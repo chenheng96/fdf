@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/19 04:00:36 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/19 04:37:14 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 // # include <mlx.h>
+// # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -73,6 +74,15 @@ t_mat	*ft_mat_mul(t_mat *A, t_mat *B);
 double	ft_get_val(t_mat *mat, size_t row, size_t col);
 void	ft_set_val(t_mat *mat, size_t row, size_t col, double value);
 int		compare_mat(t_mat *A, t_mat *B);
+
+// affine transformation
+t_mat   *ft_translate(t_mat *A, double x, double y, double z);
+t_mat   *ft_scale(t_mat *A, double x, double y, double z);
+t_mat   *ft_shear(t_mat *A, double x, double y, double z);
+t_mat   *ft_rotate_x(t_mat *A, double x);
+t_mat   *ft_rotate_y(t_mat *A, double y);
+t_mat   *ft_rotate_z(t_mat *A, double z);
+
 
 // general functions
 void	ft_perror(const char *s);
