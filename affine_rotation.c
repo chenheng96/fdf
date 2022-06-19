@@ -27,7 +27,7 @@ t_mat   *ft_rotate_x(t_mat *A)
     mat->data[1][2] = -sin(x);
     mat->data[2][1] = sin(x);
     mat->data[2][2] = cos(x);
-    ret = ft_mat_mul(A, mat);
+    ret = ft_mat_mul(mat, A);
     ft_mat_del(mat);
     return (ret);
 }
@@ -47,7 +47,7 @@ t_mat   *ft_rotate_y(t_mat *A)
     mat->data[0][2] = sin(y);
     mat->data[2][0] = -sin(y);
     mat->data[2][2] = cos(y);
-    ret = ft_mat_mul(A, mat);
+    ret = ft_mat_mul(mat, A);
     ft_mat_del(mat);
     return (ret);
 }
@@ -67,7 +67,7 @@ t_mat   *ft_rotate_z(t_mat *A)
     mat->data[0][1] = -sin(z);
     mat->data[1][0] = sin(z);
     mat->data[1][1] = cos(z);
-    ret = ft_mat_mul(A, mat);
+    ret = ft_mat_mul(mat, A);
     ft_mat_del(mat);
     return (ret);
 }
