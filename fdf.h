@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/19 04:37:14 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/19 09:01:26 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ int		compare_mat(t_mat *A, t_mat *B);
 t_mat   *ft_translate(t_mat *A, double x, double y, double z);
 t_mat   *ft_scale(t_mat *A, double x, double y, double z);
 t_mat   *ft_shear(t_mat *A, double x, double y, double z);
-t_mat   *ft_rotate_x(t_mat *A, double x);
-t_mat   *ft_rotate_y(t_mat *A, double y);
-t_mat   *ft_rotate_z(t_mat *A, double z);
-
+t_mat   *ft_rotate_x(t_mat *A);
+t_mat   *ft_rotate_y(t_mat *A);
+t_mat   *ft_rotate_z(t_mat *A);
 
 // general functions
 void	ft_perror(const char *s);
