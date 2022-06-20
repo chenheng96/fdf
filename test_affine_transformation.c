@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:02 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 14:02:30 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:16:14 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,33 @@ void	test_ft_shear3(void)
 	ft_mat_del(B);
 }
 
+void	test_ft_shear4(void)
+{
+	t_mat	*A; //correct trans mat
+	t_mat	*B; //trans mat
+	double	x;
+	double	y;
+	double	z;
+
+	x = 0.75;
+	y = 1.23;
+	z = 3.334;
+	A = ft_mat_identity(4);
+	ft_set_val(A, 0, 1, 0.9225); // xy = 0.9225
+	ft_set_val(A, 1, 0, x * y);
+	ft_set_val(A, 0, 2, 2.5005); // xz = 2.5005
+	ft_set_val(A, 2, 0, x * z);
+	ft_set_val(A, 1, 2, 4.10082); // yz = 4.10082
+	ft_set_val(A, 2, 1, y * z);
+	B = ft_shear(x, y, z);
+	if (compare_mat(A, B) == 1)
+		printf("ft_shear test 4: KO\n");
+	else
+		printf("ft_shear test 4: OK\n");
+	ft_mat_del(A);
+	ft_mat_del(B);
+}
+
 int main(void)
 {
     test_ft_translate1();
@@ -319,4 +346,5 @@ int main(void)
 	test_ft_shear1();
 	test_ft_shear2();
 	test_ft_shear3();
+	test_ft_shear4();
 }
