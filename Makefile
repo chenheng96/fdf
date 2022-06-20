@@ -40,12 +40,7 @@ affine:	${LIBFT}
 		./affine
 		${RM} affine
 
-rotate:	${LIBFT}
-		${CC} affine_rotation.c test_affine_rotation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o rotate ${CFLAGS} ${INCLUDE} -Llibft -lft -lm
-		./rotate
-		${RM} rotate
-
 norm:
 		norminette *.c *.h
 
-.PHONY: all clean fclean re matrix libft norm
+.PHONY: all clean fclean re matrix affine libft norm
