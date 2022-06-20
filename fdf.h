@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 11:46:02 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:54:28 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 // # include <mlx.h>
-// # include <math.h>
+# include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,11 +22,16 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
-typedef	struct s_mat {
+typedef struct s_map {
+	t_mat	trans;
+	t_map	map;
+}	t_map;
+
+typedef struct s_mat {
 	size_t	row;
 	size_t	col;
 	double	*data;
-}				t_mat;
+}	t_mat;
 
 typedef struct s_vars {
 	void	*mlx;
@@ -36,7 +41,7 @@ typedef struct s_vars {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_vars;
+}	t_vars;
 
 typedef struct s_data {
 	int	x0;
@@ -51,7 +56,7 @@ typedef struct s_data {
 	int	e2;
 	int	x;
 	int	y;
-}				t_data;
+}	t_data;
 
 // mlx functions
 void	my_mlxpixelput(t_vars *data, int x, int y, int color);
@@ -63,7 +68,7 @@ void	draw_line1(t_data *data, t_vars *vars, int color);
 void	draw_line2(t_data *data, t_vars *vars, int color);
 
 // map parsing
-int 	**parse_map(char *str, char ***map, t_data *data, int **map_coor);
+void	parse_map(char *str, t_map *map);
 
 // matrix functions
 t_mat	*ft_mat_new(size_t row, size_t col);
@@ -76,12 +81,12 @@ void	ft_set_val(t_mat *mat, size_t row, size_t col, double value);
 int		compare_mat(t_mat *A, t_mat *B);
 
 // affine transformation
-t_mat   *ft_translate(t_mat *A, double x, double y, double z);
-t_mat   *ft_scale(t_mat *A, double x, double y, double z);
-t_mat   *ft_shear(t_mat *A, double x, double y, double z);
-t_mat   *ft_rotate_x(double x);
-t_mat   *ft_rotate_y(double y);
-t_mat   *ft_rotate_z(double z);
+t_mat	*ft_translate(double x, double y, double z);
+t_mat	*ft_scale(double x, double y, double z);
+t_mat	*ft_shear(double x, double y, double z);
+t_mat	*ft_rotate_x(double x);
+t_mat	*ft_rotate_y(double y);
+t_mat	*ft_rotate_z(double z);
 
 // general functions
 void	ft_perror(const char *s);
