@@ -6,7 +6,7 @@ CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
 
 INCLUDE = -Iinclude -Ilibft #/usr/local/include
 LDFLAGS = -Llibft #/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-LDLIBS	= -lft
+LDLIBS	= -lft -lm
 
 LIBFT	= libft/libft.a
 
@@ -36,9 +36,14 @@ matrix:	${LIBFT}
 		${RM} matrix
 
 affine:	${LIBFT}
-		${CC} affine_transformation.c test_affine_transformation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o affine ${CFLAGS} ${INCLUDE} -Llibft -lft
+		${CC} affine_transformation.c test_affine_transformation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o affine ${CFLAGS} ${INCLUDE} -Llibft -lft -lm
 		./affine
 		${RM} affine
+
+rotate:	${LIBFT}
+		${CC} affine_rotation.c test_affine_rotation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o rotate ${CFLAGS} ${INCLUDE} -Llibft -lft -lm
+		./rotate
+		${RM} rotate
 
 norm:
 		norminette *.c *.h
