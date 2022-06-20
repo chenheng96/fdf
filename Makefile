@@ -35,11 +35,6 @@ matrix:	${LIBFT}
 		./matrix
 		${RM} matrix
 
-affine:	${LIBFT}
-		${CC} affine_transformation.c test_affine_transformation.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o affine ${CFLAGS} ${INCLUDE} -Llibft -lft -lm
-		./affine
-		${RM} affine
-
 norm:
 		norminette *.c *.h
 
