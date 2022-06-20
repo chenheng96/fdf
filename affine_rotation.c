@@ -3,71 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   affine_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 04:28:13 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/19 09:02:17 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/20 11:45:55 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /*
-To rotate 3D models around x coordinates.
+To return a trans mat to rotate 3D models around x coordinates.
 */
-t_mat   *ft_rotate_x(t_mat *A)
+t_mat   *ft_rotate_x(double x)
 {
     t_mat   *mat;
-    t_mat   *ret;
-    double  x;
 
-    x = 100;
     mat = ft_mat_identity(4);
-    mat->data[1][1] = cos(x);
-    mat->data[1][2] = -sin(x);
-    mat->data[2][1] = sin(x);
-    mat->data[2][2] = cos(x);
-    ret = ft_mat_mul(mat, A);
-    ft_mat_del(mat);
-    return (ret);
+	ft_set_val(mat, 1, 1, cos(x));
+	ft_set_val(mat, 1, 2, -sin(x));
+	ft_set_val(mat, 2, 1, sin(x));
+	ft_set_val(mat, 2, 2, cos(x));
+    return (mat);
 }
 
 /*
-To rotate 3D models around y coordinates.
+To return a trans mat to rotate 3D models around y coordinates.
 */
-t_mat   *ft_rotate_y(t_mat *A)
+t_mat   *ft_rotate_y(double y)
 {
     t_mat   *mat;
-    t_mat   *ret;
-    double  y;
 
-    y = 100;
     mat = ft_mat_identity(4);
-    mat->data[0][0] = cos(y);
-    mat->data[0][2] = sin(y);
-    mat->data[2][0] = -sin(y);
-    mat->data[2][2] = cos(y);
-    ret = ft_mat_mul(mat, A);
-    ft_mat_del(mat);
-    return (ret);
+	ft_set_val(mat, 0, 0, cos(y));
+	ft_set_val(mat, 0, 2, sin(y));
+	ft_set_val(mat, 2, 0, -sin(y));
+	ft_set_val(mat, 2, 2, cos(y));
+    return (mat);
 }
 
 /*
-To rotate 3D models around x coordinates.
+To return a trans mat to rotate 3D models around z coordinates.
 */
 t_mat   *ft_rotate_z(t_mat *A)
 {
     t_mat   *mat;
-    t_mat   *ret;
-    double  z;
 
-    z = 100;
     mat = ft_mat_identity(4);
-    mat->data[0][0] = cos(z);
-    mat->data[0][1] = -sin(z);
-    mat->data[1][0] = sin(z);
-    mat->data[1][1] = cos(z);
-    ret = ft_mat_mul(mat, A);
-    ft_mat_del(mat);
+	ft_set_val(mat, 0, 0, cos(z));
+	ft_set_val(mat, 0, 1, sin(z));
+	ft_set_val(mat, 1, 0, -sin(z));
+	ft_set_val(mat, 1, 1, cos(z));
     return (ret);
 }
