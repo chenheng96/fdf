@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:02 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 13:59:06 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:02:30 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	compare_mat(t_mat *A, t_mat *B)
 		if (A->data[i] != B->data[i])
 		{
 			printf("A[%li]: %f B[%li]: %f\n", i, A->data[i], i, B->data[i]);
+			printf("A[%li]: %lf B[%li]: %lf\n", i, A->data[i], i, B->data[i]);
+			printf("A[%li]: %g B[%li]: %g\n", i, A->data[i], i, B->data[i]);
+			printf("A[%li]: %e B[%li]: %e\n", i, A->data[i], i, B->data[i]);
 			return (1);
 		}
 	}
@@ -292,8 +295,8 @@ void	test_ft_shear3(void)
 	A = ft_mat_identity(4);
 	ft_set_val(A, 0, 1, 0.55);
 	ft_set_val(A, 1, 0, 0.55);
-	ft_set_val(A, 0, 2, 1.1 * 2.7); // 2.97 / 1.1 * 2.7
-	ft_set_val(A, 2, 0, 2.97);
+	ft_set_val(A, 0, 2, 1.1 * 2.7); // 1.1 * 2.7 works
+	ft_set_val(A, 2, 0, 2.97); // 2.97 does not work
 	ft_set_val(A, 1, 2, 1.35);
 	ft_set_val(A, 2, 1, 1.35);
 	B = ft_shear(1.1, 0.5, 2.7);
