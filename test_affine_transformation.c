@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:02 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 14:16:14 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:23:10 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,14 +291,20 @@ void	test_ft_shear3(void)
 {
 	t_mat	*A; //correct trans mat
 	t_mat	*B; //trans mat
+	double	x;
+	double	y;
+	double	z;
 
+	x = 1.1;
+	y = 0.5;
+	z = 2.7;
 	A = ft_mat_identity(4);
 	ft_set_val(A, 0, 1, 0.55);
-	ft_set_val(A, 1, 0, 0.55);
-	ft_set_val(A, 0, 2, 1.1 * 2.7); // 1.1 * 2.7 works
+	ft_set_val(A, 1, 0, x * y);
+	ft_set_val(A, 0, 2, x * z); // 1.1 * 2.7 works
 	ft_set_val(A, 2, 0, 2.97); // 2.97 does not work
 	ft_set_val(A, 1, 2, 1.35);
-	ft_set_val(A, 2, 1, 1.35);
+	ft_set_val(A, 2, 1, y * z);
 	B = ft_shear(1.1, 0.5, 2.7);
 	if (compare_mat(A, B) == 1)
 		printf("ft_shear test 3: KO\n");
