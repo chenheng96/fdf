@@ -13,6 +13,22 @@
 #include "fdf.h"
 
 /*
+To free the map struct.
+*/
+void	ft_map_del(t_map *map)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < map->row)
+		free(map->data[i]);
+	free(map->data);
+	ft_mat_del(map->map);
+	ft_mat_del(map->transform);
+	free(map);
+}
+
+/*
 To count number of numbers in a row in the file.
 */
 size_t	count_col(char *str)
@@ -85,7 +101,6 @@ void	parse_map(char *str, t_map *map)
 		while (++j < map->col)
 		{
 			map->data[i][j] = ft_atoi(arr[j]);
-			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 			free(arr[j]);
 		}
 		free(arr[j]);
@@ -93,4 +108,22 @@ void	parse_map(char *str, t_map *map)
 		free(s);
 	}
 	close(fd);
+}
+
+/*
+To fill in the matrix in map->map with data from map->data.
+*/
+void	fill_map(t_map *map)
+{
+	size_t	i;
+	size_t	j;
+
+	map->map = ft_mat_new(map->row, map->col);
+	i = -1;
+	while (++i < map->row)
+	{
+		j = -1;
+		while (++j < map->col)
+			ft_set_val(map->map, i, j, map->data[i][j]);
+	}
 }
