@@ -91,7 +91,6 @@ void	parse_map(char *str, t_map *map)
 		while (++j < map->col)
 		{
 			map->data[i][j] = ft_atoi(arr[j]);
-			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 			free(arr[j]);
 		}
 		free(arr[j]);
