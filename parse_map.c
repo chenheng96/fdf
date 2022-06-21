@@ -22,15 +22,10 @@ size_t	count_col(char *str)
 	ret = 0;
 	while (*str != '\0' && *str != '\n')
 	{
-		if (*str >= '0' || *str == '9')
+		if (*str >= '0' && *str <= '9')
 		{
 			ret++;
-			while (*str >= '0' || *str == '9')
-				str++;
-		}
-		else if (*str == ',')
-		{
-			while (*str != ' ')
+			while (*str != ' ' && *str != '\0' && *str != '\n')
 				str++;
 		}
 		else
@@ -60,7 +55,6 @@ size_t	count_row(char	*str)
 		++ret;
 		free(s);
 	}
-	close(fd);
 	return (ret);
 }
 
@@ -91,6 +85,7 @@ void	parse_map(char *str, t_map *map)
 		while (++j < map->col)
 		{
 			map->data[i][j] = ft_atoi(arr[j]);
+			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 			free(arr[j]);
 		}
 		free(arr[j]);
