@@ -2,11 +2,11 @@ FDF		= fdf
 SRCS	= ft_mat_mul.c #fdf.c draw_line.c parse_map.c
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g3
 
 INCLUDE = -Iinclude -Ilibft #/usr/local/include
 LDFLAGS = -Llibft #/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-LDLIBS	= -lft -lm
+LDLIBS	= -lft #-lm
 
 LIBFT	= libft/libft.a
 
@@ -35,7 +35,12 @@ matrix:	${LIBFT}
 		./matrix
 		${RM} matrix
 
+parse:	${LIBFT}
+		${CC} parse_map.c test_parse_map.c fdf_helper.c -o parse ${CFLAGS} ${INCLUDE} -Llibft -lft
+		./parse
+		${RM} parse
+
 norm:
 		norminette *.c *.h
 
-.PHONY: all clean fclean re matrix affine libft norm
+.PHONY: all clean fclean re libft norm matrix parse
