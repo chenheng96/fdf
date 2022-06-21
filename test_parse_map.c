@@ -4,34 +4,43 @@
 
 size_t	count_col(char *str);
 
+void	print_mat(t_mat *mat)
+{
+	size_t	i = -1;
+
+	while (++i < mat->row * mat->col)
+	{
+		printf("%i ", (int)mat->data[i]);
+		if((i + 1)% mat->col == 0)
+			printf("\n");
+	}
+}
+
 void	test_parse_map(void)
 {
 	t_map	*map;
-	size_t	i;
-	size_t	j;
 
-	i = -1;
 	// printf("in test parse map1\n");
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test_maps/julia.fdf", map);
+	parse_map("test_maps/t2.fdf", map);
 	printf("in test parse map2\n");
-	while (++i < map->row)
-	{
-		// printf("in test parse map3\n");
-		j = -1;
-		while (++j < map->col)
-			printf("%i ", (int)map->data[i][j]);
-		printf("\n");
-			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
-	}
-	i = -1;
-	printf("row %li\ncol %li\n", map->row, map->col);
-	while (++i < map->row)
-		free(map->data[i]);
-	free(map->data);
-	free(map);
+	// while (++i < map->row)
+	// {
+	// 	// printf("in test parse map3\n");
+	// 	j = -1;
+	// 	while (++j < map->col)
+	// 		printf("%i ", (int)map->data[i][j]);
+	// 	printf("\n");
+	// 		// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
+	// }
+
+	fill_map(map);
+	map->transform = ft_mat_identity(4);
+	print_mat(map->map);
+	printf("row %li\ncol %li\n", map->map->row, map->map->col);
+	ft_map_del(map);
 }
 
 void	test_count_col(void)
