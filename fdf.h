@@ -72,6 +72,8 @@ void	draw_line2(t_data *data, t_vars *vars, int color);
 
 // map parsing
 void	parse_map(char *str, t_map *map);
+void	fill_map(t_map *map);
+void	ft_map_del(t_map *map);
 
 // matrix functions
 t_mat	*ft_mat_new(size_t row, size_t col);
@@ -93,5 +95,7 @@ t_mat	*ft_rotate_z(double z);
 
 // general functions
 void	ft_perror(const char *s);
+void	*ft_malloc(size_t size);
+int		ft_open(const char *pathname, int flags);
 
 #endif
