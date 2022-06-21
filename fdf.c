@@ -33,20 +33,18 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 	t_data	data;
-	char	***map;
-	int		**map_coor;
+	t_map	*map;
 
 	if (argc != 2)
 	{
 		ft_putstr_fd("Usage:./fdf map\n", 1);
 		return (-1);
 	}
-	map = NULL;
-	map_coor = NULL;
+	map = malloc(sizeof(t_map));
 	data.x0 = 100;
 	data.y0 = 100;
-	if (parse_map(argv[1], map, &data, map_coor) == NULL)
-		return (-1);
+	parse_map(argv[1], map);
+	fill_map(map);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
 	vars.img = mlx_new_image(vars.mlx, 1920, 1080);
