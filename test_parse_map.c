@@ -2,7 +2,7 @@
 #include "libft/libft.h"
 #include "fdf.h"
 
-size_t	count_num(char *str);
+size_t	count_col(char *str);
 
 void	test_parse_map(void)
 {
@@ -15,56 +15,58 @@ void	test_parse_map(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test.txt", map);
-	// printf("in test parse map2\n");
+	parse_map("test_maps/pyramide.fdf", map);
+	printf("in test parse map2\n");
 	while (++i < map->row)
 	{
 		// printf("in test parse map3\n");
 		j = -1;
 		while (++j < map->col)
-			printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
+			printf("%i ", (int)map->data[i][j]);
+		printf("\n");
+			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 	}
 	i = -1;
-	printf("row %li\n", map->row);
+	printf("row %li\ncol %li\n", map->row, map->col);
 	while (++i < map->row)
 		free(map->data[i]);
 	free(map->data);
 	free(map);
 }
 
-void	test_count_num(void)
+void	test_count_col(void)
 {
-	char	*str1 = "1 2 3 4 5";
-	char	*str2 = "1  2  3  4  5";
-	char	*str3 = "1  1  1  1  1  1  1  1  1";
-	char	*str4 = "0 2  0  4  0  5  0  0 80  0  0  9  0  0  0 11  0  0  0";
+	char	*str1 = "1 2 3 4 5 ";
+	char	*str2 = "1  2  3  4  5 ";
+	char	*str3 = "1  1  1  1  1  1  1  1  1 ";
+	char	*str4 = "0 2  0  4  0  5  0  0 80  0  0  9  0  0  0 11  0  0  0 ";
 	size_t	i;
 
-	i = count_num(str1);
+	i = count_col(str1);
 	if (i == 5)
-		printf("test_count_num1: OK\n");
+		printf("test_count_col1: OK %li\n", i);
 	else
-		printf("test_count_num1: KO\n");
-	i = count_num(str2);
+		printf("test_count_col1: KO %li\n", i);
+	i = count_col(str2);
 	if (i == 5)
-		printf("test_count_num2: OK\n");
+		printf("test_count_col2: OK %li\n", i);
 	else
-		printf("test_count_num2: KO\n");
-	i = count_num(str3);
+		printf("test_count_col2: KO %li\n", i);
+	i = count_col(str3);
 	if (i == 9)
-		printf("test_count_num3: OK\n");
+		printf("test_count_col3: OK %li\n", i);
 	else
-		printf("test_count_num3: KO\n");
-	i = count_num(str4);
+		printf("test_count_col3: KO %li\n", i);
+	i = count_col(str4);
 	if (i == 19)
-		printf("test_count_num4: OK\n");
+		printf("test_count_col4: OK %li\n", i);
 	else
-		printf("test_count_num4: KO\n");
+		printf("test_count_col4: KO %li\n", i);
 }
 
 int	main(void)
 {
-	test_count_num();
+	test_count_col();
 	test_parse_map();
 }
 
