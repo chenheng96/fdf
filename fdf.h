@@ -14,7 +14,7 @@
 # define FDF_H
 
 // # include <mlx.h>
-# include <math.h>
+// # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,16 +22,19 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
-typedef struct s_map {
-	t_mat	trans;
-	t_map	map;
-}	t_map;
-
 typedef struct s_mat {
 	size_t	row;
 	size_t	col;
 	double	*data;
 }	t_mat;
+
+typedef struct s_map {
+	size_t	row;
+	size_t	col;
+	double	**data;
+	t_mat	*map;
+	t_mat	*transform;
+}	t_map;
 
 typedef struct s_vars {
 	void	*mlx;
