@@ -15,23 +15,26 @@
 /*
 To count number of numbers in a row in the file.
 */
-size_t	count_num(char *str)
+size_t	count_col(char *str)
 {
-	size_t	i;
 	size_t	ret;
 
-	i = 0;
-	ret = 1;
-	while (str[i] != '\0' && str[i] != '\n')
+	ret = 0;
+	while (*str != '\0' && *str != '\n')
 	{
-		if (str[i] == ' ' || str[i] == '\t')
+		if (*str >= '0' || *str == '9')
 		{
 			ret++;
-			while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0' && str[i] != '\n')
-				i++;
+			while (*str >= '0' || *str == '9')
+				str++;
+		}
+		else if (*str == ',')
+		{
+			while (*str != ' ')
+				str++;
 		}
 		else
-			i++;
+			str++;
 	}
 	return (ret);
 }
@@ -80,15 +83,17 @@ void	parse_map(char *str, t_map *map)
 		s = get_next_line(fd);
 		if (s == NULL)
 			break ;
-		map->col = count_num(s);
+		map->col = count_col(s);
 		arr = ft_split(s, ' ');
 		map->data[++i] = ft_malloc(sizeof(double) * map->col);
 		j = -1;
 		while (++j < map->col)
 		{
 			map->data[i][j] = ft_atoi(arr[j]);
+			// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 			free(arr[j]);
 		}
+		free(arr[j]);
 		free(arr);
 		free(s);
 	}
