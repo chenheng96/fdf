@@ -20,3 +20,24 @@ void	ft_perror(const char *s)
 	perror(s);
 	exit(EXIT_FAILURE);
 }
+
+void	*ft_malloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (ptr == NULL)
+		ft_perror("Cannot malloc.\n");
+	return (ptr);
+}
+
+
+int	ft_open(const char *pathname, int flags)
+{
+	int	fd;
+
+	fd = open(pathname, flags);
+	if (fd == -1)
+		ft_perror("Cannot open file.\n");
+	return (fd);
+}
