@@ -37,6 +37,30 @@ size_t	count_num(char *str)
 }
 
 /*
+To count number of rows in the file.
+*/
+size_t	count_row(char	*str)
+{
+	int 	fd;
+	size_t	ret;
+	char	*s;
+
+	ret = 0;
+	fd = open(str, O_RDONLY);
+	if (fd == -1)
+		ft_perror("Cannot open file.\n");
+	while (1)
+	{
+		s = get_next_line(fd);
+		if (s == NULL)
+			break ;
+		++ret;
+		free(s);
+	}
+	return (ret);
+}
+
+/*
 Parse map into matrix. Need to count row and col before allocating mem for mat.
 */
 void	parse_map(char *str, t_map *map)
@@ -48,10 +72,9 @@ void	parse_map(char *str, t_map *map)
 	char	**arr;
 
 	i = -1;
-	fd = open(str, O_RDONLY);
-	if (fd == -1)
-		ft_perror("Cannot open file.\n");
-	map->data = malloc(sizeof(double));
+	fd = ft_open(str, O_RDONLY);
+	map->row = count_row(str);
+	map->data = ft_malloc(sizeof(double) * map->row);
 	while (1)
 	{
 		s = get_next_line(fd);
@@ -59,20 +82,15 @@ void	parse_map(char *str, t_map *map)
 			break ;
 		map->col = count_num(s);
 		arr = ft_split(s, ' ');
-		printf("map->col %li\n", map->col);
-		map->row++;
-		map->data[++i] = malloc(sizeof(double) * map->col);
-		if (map->data[i] == NULL)
-			ft_perror("parse_map error\n");
+		map->data[++i] = ft_malloc(sizeof(double) * map->col);
 		j = -1;
 		while (++j < map->col)
 		{
 			map->data[i][j] = ft_atoi(arr[j]);
-			printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
 			free(arr[j]);
 		}
-		free(s);
 		free(arr);
+		free(s);
 	}
 	close(fd);
 }
