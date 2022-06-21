@@ -60,6 +60,7 @@ size_t	count_row(char	*str)
 		++ret;
 		free(s);
 	}
+	close(fd);
 	return (ret);
 }
 
