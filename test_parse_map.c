@@ -21,23 +21,11 @@ void	test_parse_map(void)
 	t_map	*map;
 	size_t	i;
 
-	// printf("in test parse map1\n");
 	i = -1;
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test_maps/t1.fdf", map);
-	printf("in test parse map2\n");
-	// while (++i < map->row)
-	// {
-	// 	// printf("in test parse map3\n");
-	// 	j = -1;
-	// 	while (++j < map->col)
-	// 		printf("%i ", (int)map->data[i][j]);
-	// 	printf("\n");
-	// 		// printf("map->data[%li][%li] = %f\n", i, j, map->data[i][j]);
-	// }
-
+	parse_map("test_maps/10-70.fdf", map);
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
 	while (++i < 4)
@@ -51,74 +39,74 @@ void	test_parse_map(void)
 
 void	test_count_col(void)
 {
-	char	*str1 = "1 2 3 4 5";
-	char	*str10 = "1 2 3 4 5 ";
-	char	*str11 = " 1 2 3 4 5";
-	char	*str12 = " 1 2 3 4 5 ";
-	char	*str2 = "1  2  3  4  5  6";
-	char	*str3 = "1  1  1  1  1  1  1  1  1 ";
-	char	*str4 = " 141,0xffffff 137,0xffffff 151,0xffffff 200,0xffffff 200,0xffffff 180,0xffffff";
-	char	*str5t1 = " 0,0xff 0,0xff 1,0xff 0,0xff 5,0xff00 3,0xff 5,0xff00 6,0xff00 7,0xff00 11,0xff00";
-	char	*str6t2 = " 110,0xffffff 111,0xffffff 118,0xffffff 103,0xffffff";
-	char	*str7ef = " 1,0x810202 1,0x810202 1,0x810202 1,0x810202";
-	char	*str8julia = " 1,0x810202 1,0x810202 1,0x810202";
+	char	*test1 = "1 2 3 4 5";
+	char	*test2 = "1 2 3 4 5 ";
+	char	*test3 = " 1 2 3 4 5";
+	char	*test4 = " 1 2 3 4 5 ";
+	char	*test5 = "1  2  3  4  5  6";
+	char	*test6 = "1  1  1  1  1  1  1  1  1 ";
+	char	*test7 = " 141,0xffffff 137,0xffffff 151,0xffffff 200,0xffffff 200,0xffffff 180,0xffffff";
+	char	*test8 = " 0,0xff 0,0xff 1,0xff 0,0xff 5,0xff00 3,0xff 5,0xff00 6,0xff00 7,0xff00 11,0xff00";
+	char	*test9 = " 110,0xffffff 111,0xffffff 118,0xffffff 103,0xffffff";
+	char	*test10 = " 1,0x810202 1,0x810202 1,0x810202 1,0x810202";
+	char	*test11 = " 1,0x810202 1,0x810202 1,0x810202";
 	size_t	i;
 
-	i = count_col(str1);
+	i = count_col(test1);
 	if (i == 5)
-		printf("test_count_col1: OK %li\n", i);
+		printf("test1_count_col: OK %li\n", i);
 	else
-		printf("test_count_col1: KO %li\n", i);
-	i = count_col(str10);
+		printf("test1_count_col: KO %li\n", i);
+	i = count_col(test2);
 	if (i == 5)
-		printf("test_count_col10: OK %li\n", i);
+		printf("test2_count_col: OK %li\n", i);
 	else
-		printf("test_count_col10: KO %li\n", i);
-	i = count_col(str11);
+		printf("test2_count_col: KO %li\n", i);
+	i = count_col(test3);
 	if (i == 5)
-		printf("test_count_col11: OK %li\n", i);
+		printf("test3_count_col: OK %li\n", i);
 	else
-		printf("test_count_col11: KO %li\n", i);
-	i = count_col(str12);
+		printf("test3_count_col: KO %li\n", i);
+	i = count_col(test4);
 	if (i == 5)
-		printf("test_count_col12: OK %li\n", i);
+		printf("test4_count_col: OK %li\n", i);
 	else
-		printf("test_count_col12: KO %li\n", i);
-	i = count_col(str2);
+		printf("test4_count_col: KO %li\n", i);
+	i = count_col(test5);
 	if (i == 6)
-		printf("test_count_col2: OK %li\n", i);
+		printf("test5_count_col: OK %li\n", i);
 	else
-		printf("test_count_col2: KO %li\n", i);
-	i = count_col(str3);
+		printf("test5_count_col: KO %li\n", i);
+	i = count_col(test6);
 	if (i == 9)
-		printf("test_count_col3: OK %li\n", i);
+		printf("test6_count_col: OK %li\n", i);
 	else
-		printf("test_count_col3: KO %li\n", i);
-	i = count_col(str4);
+		printf("test6_count_col: KO %li\n", i);
+	i = count_col(test7);
 	if (i == 6)
-		printf("test_count_col4: OK %li\n", i);
+		printf("test7_count_col: OK %li\n", i);
 	else
-		printf("test_count_col4: KO %li\n", i);
-	i = count_col(str5t1);
+		printf("test7_count_col: KO %li\n", i);
+	i = count_col(test8);
 	if (i == 10)
-		printf("test_count_col str5t1: OK %li\n", i);
+		printf("test8_count_col: OK %li\n", i);
 	else
-		printf("test_count_col str5t1: KO %li\n", i);
-	i = count_col(str6t2);
+		printf("test8_count_col: KO %li\n", i);
+	i = count_col(test9);
 	if (i == 4)
-		printf("test_count_col str6t2: OK %li\n", i);
+		printf("test9_count_col: OK %li\n", i);
 	else
-		printf("test_count_col str6t2: KO %li\n", i);
-	i = count_col(str7ef);
+		printf("test9_count_col: KO %li\n", i);
+	i = count_col(test10);
 	if (i == 4)
-		printf("test_count_col str7ef: OK %li\n", i);
+		printf("test10_count_col: OK %li\n", i);
 	else
-		printf("test_count_col str7ef: KO %li\n", i);
-	i = count_col(str8julia);
+		printf("test10_count_col: KO %li\n", i);
+	i = count_col(test11);
 	if (i == 3)
-		printf("test_count_col str8julia: OK %li\n", i);
+		printf("test11_count_col: OK %li\n", i);
 	else
-		printf("test_count_col str8julia: KO %li\n", i);
+		printf("test11_count_col: KO %li\n", i);
 }
 
 int	main(void)
