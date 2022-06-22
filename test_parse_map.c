@@ -10,8 +10,8 @@ void	print_mat(t_mat *mat)
 
 	while (++i < mat->row * mat->col)
 	{
-		printf("%i ", (int)mat->data[i]);
-		if((i + 1)% mat->col == 0)
+		printf("%f ", mat->data[i]);
+		if ((i + 1)% mat->col == 0)
 			printf("\n");
 	}
 }
@@ -25,7 +25,7 @@ void	test_parse_map(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test_maps/basictest.fdf", map);
+	open_file("test_maps/basictest.fdf", map);
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
 	while (++i < map->row * map->col)
@@ -33,7 +33,7 @@ void	test_parse_map(void)
 		print_mat(map->map[i]);
 		printf("\n");
 	}
-	printf("row %li\ncol %li\n", map->map[0]->row, map->map[0]->col);
+	printf("row %li\ncol %li\n", map->row, map->col);
 	ft_map_del(map);
 }
 
