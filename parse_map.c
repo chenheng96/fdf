@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 10:51:54 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 11:40:31 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,20 +128,18 @@ void	fill_map(t_map *map)
 	k = -1;
 	while (++k < map->row * map->col)
 		map->map[k] = ft_mat_new(4, 1);
-	k = -1;
-	while (++k < map->row * map->col)
+	k = 0;
+	i = -1;
+	while (++i < map->row)
 	{
-		i = -1;
-		while (++i < map->row)
+		j = -1;
+		while (++j < map->col)
 		{
-			j = -1;
-			while (++j < map->col)
-			{
-				ft_set_val(map->map[k], 0, 0, n * j);
-				ft_set_val(map->map[k], 1, 0, n * i);
-				ft_set_val(map->map[k], 2, 0, n * map->data[i][j]);
-				ft_set_val(map->map[k], 3, 0, 1);
-			}
+			ft_set_val(map->map[k], 0, 0, k % map->col * n - i * n + n);
+			ft_set_val(map->map[k], 1, 0, k % map->col * n + i * n + n);
+			ft_set_val(map->map[k], 2, 0, map->data[i][j] * n);
+			ft_set_val(map->map[k], 3, 0, 1);
+			++k;
 		}
 	}
 }
