@@ -19,12 +19,14 @@ void	print_mat(t_mat *mat)
 void	test_parse_map(void)
 {
 	t_map	*map;
+	size_t	i;
 
 	// printf("in test parse map1\n");
+	i = -1;
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test_maps/t2.fdf", map);
+	parse_map("test_maps/t1.fdf", map);
 	printf("in test parse map2\n");
 	// while (++i < map->row)
 	// {
@@ -38,8 +40,12 @@ void	test_parse_map(void)
 
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
-	print_mat(map->map);
-	printf("row %li\ncol %li\n", map->map->row, map->map->col);
+	while (++i < 4)
+	{
+		print_mat(map->map[i]);
+		printf("\n");
+	}
+	printf("row %li\ncol %li\n", map->map[0]->row, map->map[0]->col);
 	ft_map_del(map);
 }
 
