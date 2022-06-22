@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:30:20 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 13:03:48 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 14:48:43 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_mat_cpy(t_mat *A, t_mat *B)
 	i = -1;
 	if (A->row == B->row || A->col == B->col)
 	{
-		while (++i < A->row *A->col)
+		while (++i < A->row * A->col)
 			B->data[i] = A->data[i];
 	}
 	else
