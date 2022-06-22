@@ -123,7 +123,7 @@ void	fill_map(t_map *map)
 	size_t	k;
 	double	n;
 
-	n = 50;
+	n = 10;
 	map->map = malloc(sizeof(t_map) * 4);
 	k = -1;
 	while (++k < 4)
