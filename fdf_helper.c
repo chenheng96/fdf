@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/18 05:32:52 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 14:46:39 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*ft_malloc(size_t size)
 		ft_perror("Cannot malloc.\n");
 	return (ptr);
 }
-
 
 int	ft_open(const char *pathname, int flags)
 {
