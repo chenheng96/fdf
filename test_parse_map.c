@@ -25,10 +25,10 @@ void	test_parse_map(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	parse_map("test_maps/10-70.fdf", map);
+	parse_map("test_maps/basictest.fdf", map);
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
-	while (++i < 4)
+	while (++i < map->row * map->col)
 	{
 		print_mat(map->map[i]);
 		printf("\n");
