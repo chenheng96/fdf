@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:47:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/16 15:12:44 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 15:05:45 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	map = malloc(sizeof(t_map));
 	data.x0 = 100;
 	data.y0 = 100;
-	parse_map(argv[1], map);
+	open_file(argv[1], map);
 	fill_map(map);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
