@@ -23,7 +23,10 @@ void	ft_map_del(t_map *map)
 	while (++i < map->row)
 		free(map->data[i]);
 	free(map->data);
-	ft_mat_del(map->map);
+	i = -1;
+	while (++i < 4)
+		ft_mat_del(map->map[i]);
+	free(map->map);
 	ft_mat_del(map->transform);
 	free(map);
 }
@@ -117,13 +120,24 @@ void	fill_map(t_map *map)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
+	double	n;
 
-	map->map = ft_mat_new(map->row, map->col);
+	n = 50;
+	map->map = malloc(sizeof(t_map) * 4);
+	k = -1;
+	while (++k < 4)
+		map->map[k] = ft_mat_new(map->row, map->col);
 	i = -1;
 	while (++i < map->row)
 	{
 		j = -1;
 		while (++j < map->col)
-			ft_set_val(map->map, i, j, map->data[i][j]);
+		{
+			ft_set_val(map->map[0], i, j, n * i);
+			ft_set_val(map->map[1], i, j, n * j);
+			ft_set_val(map->map[2], i, j, n * map->data[i][j]);
+			ft_set_val(map->map[3], i, j, 1);
+		}
 	}
 }
