@@ -32,7 +32,7 @@ typedef struct s_map {
 	size_t	row;
 	size_t	col;
 	double	**data;
-	t_mat	*map;
+	t_mat	**map;
 	t_mat	*transform;
 }	t_map;
 
