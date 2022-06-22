@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 16:52:38 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 10:51:54 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_map_del(t_map *map)
 		free(map->data[i]);
 	free(map->data);
 	i = -1;
-	while (++i < 4)
+	while (++i < map->row * map->col)
 		ft_mat_del(map->map[i]);
 	free(map->map);
 	ft_mat_del(map->transform);
@@ -124,20 +124,24 @@ void	fill_map(t_map *map)
 	double	n;
 
 	n = 10;
-	map->map = malloc(sizeof(t_map) * 4);
+	map->map = malloc(sizeof(t_map) * map->row * map->col);
 	k = -1;
-	while (++k < 4)
-		map->map[k] = ft_mat_new(map->row, map->col);
-	i = -1;
-	while (++i < map->row)
+	while (++k < map->row * map->col)
+		map->map[k] = ft_mat_new(4, 1);
+	k = -1;
+	while (++k < map->row * map->col)
 	{
-		j = -1;
-		while (++j < map->col)
+		i = -1;
+		while (++i < map->row)
 		{
-			ft_set_val(map->map[0], i, j, n * i);
-			ft_set_val(map->map[1], i, j, n * j);
-			ft_set_val(map->map[2], i, j, n * map->data[i][j]);
-			ft_set_val(map->map[3], i, j, 1);
+			j = -1;
+			while (++j < map->col)
+			{
+				ft_set_val(map->map[k], 0, 0, n * j);
+				ft_set_val(map->map[k], 1, 0, n * i);
+				ft_set_val(map->map[k], 2, 0, n * map->data[i][j]);
+				ft_set_val(map->map[k], 3, 0, 1);
+			}
 		}
 	}
 }
