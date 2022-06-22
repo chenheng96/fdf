@@ -36,7 +36,7 @@ matrix:	${LIBFT}
 		${RM} matrix
 
 parse:	${LIBFT}
-		${CC} parse_map.c test_parse_map.c matrix_multiplication.c matrix_helper.c fdf_helper.c -o parse ${CFLAGS} ${INCLUDE} -Llibft -lft
+		${CC} parse_map.c test_parse_map.c matrix_multiplication.c matrix_helper.c parse_map_helper.c fdf_helper.c -o parse ${CFLAGS} ${INCLUDE} -Llibft -lft
 		./parse
 		${RM} parse
 
