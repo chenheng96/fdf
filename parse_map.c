@@ -6,12 +6,29 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 15:01:41 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 15:07:59 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
+Open file and pass struct and fd to parse_map.
+Need to count row and col before allocating mem for mat.
+*/
+void	open_file(char *str, t_map *map)
+{
+	int		fd;
+
+	fd = ft_open(str, O_RDONLY);
+	map->row = countrow_checkcol(str, map);
+	map->data = ft_malloc(sizeof(double) * map->row);
+	parse_map(fd, map);
+}
+
+/*
+Parse map into matrix.
+*/
 void	parse_map(int fd, t_map *map)
 {
 	size_t	i;
@@ -38,19 +55,6 @@ void	parse_map(int fd, t_map *map)
 		free(s);
 	}
 	close(fd);
-}
-
-/*
-Parse map into matrix. Need to count row and col before allocating mem for mat.
-*/
-void	open_file(char *str, t_map *map)
-{
-	int		fd;
-
-	fd = ft_open(str, O_RDONLY);
-	map->row = countrow_checkcol(str, map);
-	map->data = ft_malloc(sizeof(double) * map->row);
-	parse_map(fd, map);
 }
 
 /*
