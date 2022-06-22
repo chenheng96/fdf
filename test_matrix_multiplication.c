@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrix_multiplication.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchong <cchong@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:29:54 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/19 04:03:11 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/22 16:57:23 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,17 @@ void	test_ft_mat_mul3(void)
 	ft_mat_del(D);
 }
 
+void	test_isometric(void)
+{
+	t_mat	*mat;
+	t_mat	*trans;
+	t_mat	*trans2;
+
+	mat = ft_mat_new(4, 1);
+	trans = ft_rotate_x(45);
+	trans2 = ft_rotate_y()
+}
+
 int	main(void)
 {
 	test_ft_mat_new();
@@ -224,4 +235,5 @@ int	main(void)
 	test_ft_mat_mul1();
 	test_ft_mat_mul2();
 	test_ft_mat_mul3();
+	test_isometric();
 }
