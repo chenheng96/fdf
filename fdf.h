@@ -14,7 +14,7 @@
 # define FDF_H
 
 // # include <mlx.h>
-// # include <math.h>
+# include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -71,9 +71,11 @@ void	draw_line1(t_data *data, t_vars *vars, int color);
 void	draw_line2(t_data *data, t_vars *vars, int color);
 
 // map parsing
-void	parse_map(char *str, t_map *map);
+void	open_file(char *str, t_map *map);
+void	parse_map(int fd, t_map *map);
 void	fill_map(t_map *map);
 void	ft_map_del(t_map *map);
+size_t	countrow_checkcol(char	*str, t_map *map);
 
 // matrix functions
 t_mat	*ft_mat_new(size_t row, size_t col);
