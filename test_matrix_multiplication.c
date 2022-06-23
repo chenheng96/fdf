@@ -217,17 +217,6 @@ void	test_ft_mat_mul3(void)
 	ft_mat_del(D);
 }
 
-void	test_isometric(void)
-{
-	t_mat	*mat;
-	t_mat	*trans;
-	t_mat	*trans2;
-
-	mat = ft_mat_new(4, 1);
-	trans = ft_rotate_x(45);
-	trans2 = ft_rotate_y()
-}
-
 int	main(void)
 {
 	test_ft_mat_new();
@@ -235,5 +224,4 @@ int	main(void)
 	test_ft_mat_mul1();
 	test_ft_mat_mul2();
 	test_ft_mat_mul3();
-	test_isometric();
 }
