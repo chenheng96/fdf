@@ -25,7 +25,7 @@ void	test_parse_map(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	open_file("test_maps/basictest.fdf", map);
+	open_file("test_maps/test.fdf", map);
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
 	while (++i < map->row * map->col)
@@ -34,6 +34,41 @@ void	test_parse_map(void)
 		printf("\n");
 	}
 	printf("row %li\ncol %li\n", map->row, map->col);
+	ft_map_del(map);
+}
+
+void	test_iso(void)
+{
+	t_map	*map;
+	size_t	i;
+	t_mat	*trans;
+	t_mat	*temp;
+
+	i = -1;
+	map = malloc(sizeof(t_map));
+	if (map == NULL)
+		ft_perror("test_parse_map error\n");
+	open_file("test_maps/test.fdf", map);
+	fill_map(map);
+	map->transform = ft_rotate_x(35.264);
+	trans = ft_rotate_y(45);
+	temp = ft_mat_mul(map->transform, trans);
+	ft_mat_del(map->transform);
+	map->transform = temp;
+	while (++i < map->row * map->col)
+	{
+		temp = ft_mat_mul(map->transform, map->map[i]);
+		ft_mat_del(map->map[i]);
+		map->map[i] = temp;
+	}
+	i = -1;
+	while (++i < map->row * map->col)
+	{
+		print_mat(map->map[i]);
+		printf("\n");
+	}
+	printf("row %li\ncol %li\n", map->row, map->col);
+	ft_mat_del(trans);
 	ft_map_del(map);
 }
 
@@ -111,8 +146,9 @@ void	test_count_col(void)
 
 int	main(void)
 {
-	test_count_col();
+	// test_count_col();
 	test_parse_map();
+	test_iso();
 }
 
 // int	main(void)
