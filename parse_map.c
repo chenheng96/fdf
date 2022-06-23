@@ -79,9 +79,8 @@ void	fill_map(t_map *map)
 		j = -1;
 		while (++j < map->col)
 		{
-			ft_set_val(map->map[k], 0, 0, k % map->col * n - i * n + n);
-			ft_set_val(map->map[k], 1, 0,
-				(k % map->col * n + i * n + n) * 0.57);
+			ft_set_val(map->map[k], 0, 0, j * n);
+			ft_set_val(map->map[k], 1, 0, i * n);
 			ft_set_val(map->map[k], 2, 0, map->data[i][j] * n);
 			ft_set_val(map->map[k], 3, 0, 1);
 			++k;
