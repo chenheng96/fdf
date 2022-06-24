@@ -6,14 +6,14 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/20 15:54:28 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/24 11:04:46 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-// # include <mlx.h>
+# include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -53,8 +53,6 @@ typedef struct s_data {
 	int	y1;
 	int	dx;
 	int	dy;
-	int	sx;
-	int	sy;
 	int	error;
 	int	e2;
 	int	x;
@@ -67,8 +65,9 @@ int		handle_key(int keycode, t_vars *vars);
 
 // line drawing algorithm
 int		abs(int n);
-void	draw_line1(t_data *data, t_vars *vars, int color);
-void	draw_line2(t_data *data, t_vars *vars, int color);
+void	draw_line(double x0, double y0, double x1, double y1);
+void	draw_line_low(double x0, double y0, double x1, double y1);
+void	draw_line_high(double x0, double y0, double x1, double y1);
 
 // map parsing
 void	open_file(char *str, t_map *map);
