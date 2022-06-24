@@ -1,8 +1,8 @@
 FDF		= fdf
-SRCS	= fdf.c
+SRCS	= fdf.c affine_rotation.c affine_transformation.c draw_line.c fdf_helper.c matrix_helper.c matrix_multiplication.c parse_map.c parse_map_helper.c
 
 CC		= gcc
-CFLAGS	= -fsanitize=address -g3 -Wall -Werror -Wextra
+CFLAGS	= -fsanitize=address -g3 #-Wall -Werror -Wextra
 
 INCLUDE = -Iinclude -Ilibft -I/usr/local/include
 LDFLAGS = -Llibft -L/usr/local/lib/
@@ -15,7 +15,7 @@ OBJS	= ${SRCS:.c=.o}
 all: 	${FDF}
 
 ${FDF}: ${LIBFT} ${OBJS}
-		${CC} ${CFLAGS} -o ${FDF} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
+		${CC} ${CFLAGS} ${OBJS} -o ${FDF} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
 
 ${LIBFT}:
 		make -C libft

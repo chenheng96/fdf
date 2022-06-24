@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/24 11:04:46 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:32:31 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,24 @@ typedef struct s_data {
 	int	y0;
 	int	y1;
 	int	dx;
-	int	dy;
-	int	error;
-	int	e2;
+	int dy;
+	int	xi;
+	int	yi;
+	int	D;
 	int	x;
 	int	y;
 }	t_data;
 
 // mlx functions
 void	my_mlxpixelput(t_vars *data, int x, int y, int color);
-int		handle_key(int keycode, t_vars *vars);
+int		handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
+void	ft_vars_del(t_vars *vars);
 
 // line drawing algorithm
 int		abs(int n);
-void	draw_line(double x0, double y0, double x1, double y1);
-void	draw_line_low(double x0, double y0, double x1, double y1);
-void	draw_line_high(double x0, double y0, double x1, double y1);
+void	draw_line(t_data *data, t_vars *vars);
+void	draw_line_low(t_data *data, t_vars *vars);
+void	draw_line_high(t_data *data, t_vars *vars);
 
 // map parsing
 void	open_file(char *str, t_map *map);

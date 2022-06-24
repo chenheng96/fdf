@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:47:24 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/03 14:08:05 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:44:50 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,82 +19,70 @@ int	abs(int n)
 	return (-n);
 }
 
-void	draw_line_low(double x0, double y0, double x1, double y1)
+void	draw_line_low(t_data *data, t_vars *vars)
 {
-	size_t	dx;
-	size_t	dy;
-	size_t	yi;
-	size_t	D;
-	size_t	x;
-
-	x = -1;
-	dx = x1 - x0;
-	dy = y1 - y0;
-	yi = 1;
-	if (dy < 0)
+	data->x = -1;
+	data->dx = data->x1 - data->x0;
+	data->dy = data->y1 - data->y0;
+	data->yi = 1;
+	if (data->dy < 0)
 	{
-		yi = -1;
-		dy = -dy;
+		data->yi = -1;
+		data->dy = -data->dy;
 	}
-	D = (2 * dy) - dx;
-	y = y0;
-	while (++x < x1)
+	data->D = (2 * data->dy) - data->dx;
+	data->y = data->y0;
+	while (++data->x < data->x1)
 	{
-		plox(x, y);
-		if (D > 0)
+		my_mlxpixelput(vars, data->x, data->y, 0xFF0000);
+		if (data->D > 0)
 		{
-			y += yi;
-			D += (2 * (dy - dx));
+			data->y += data->yi;
+			data->D += (2 * (data->dy - data->dx));
 		}
 		else
-			D += 2 * dy;
+			data->D += 2 * data->dy;
 	}
 }
 
-void	draw_line_high(double x0, double y0, double x1, double y1)
+void	draw_line_high(t_data *data, t_vars *vars)
 {
-	size_t	dx;
-	size_t	dy;
-	size_t	yi;
-	size_t	D;
-	size_t	y;
-
-	y = -1;
-	dx = x1 - x0;
-	dy = y1 - y0;
-	xi = 1;
-	if (dx < 0)
+	data->y = -1;
+	data->dx = data->x1 - data->x0;
+	data->dy = data->y1 - data->y0;
+	data->xi = 1;
+	if (data->dx < 0)
 	{
-		xi = -1;
-		dx = -dx;
+		data->xi = -1;
+		data->dx = -data->dx;
 	}
-	D = (2 * dx) - dy;
-	x = x0;
-	while (++y < y1)
+	data->D = (2 * data->dx) - data->dy;
+	data->x = data->x0;
+	while (++data->y < data->y1)
 	{
-		plox(x, y);
-		if (D > 0)
+		my_mlxpixelput(vars, data->x, data->y, 0xFF0000);
+		if (data->D > 0)
 		{
-			x += xi;
-			D += (2 * (dx - dy));
+			data->x += data->xi;
+			data->D += (2 * (data->dx - data->dy));
 		}
 		else
-			D += 2 * dx;
+			data->D += 2 * data->dx;
 	}
 }
 
-void	draw_line(double x0, double y0, double x1, double y1)
+void	draw_line(t_data *data, t_vars *vars)
 {
-	if (abs(y1 - y0) < abs(x1-x0))
+	if (abs(data->y1 - data->y0) < abs(data->x1 - data->x0))
 	{
-		if (x0 > x1)
-			draw_line_low(x1, y1, x0, y0);
+		if (data->x0 > data->x1)
+			draw_line_low(data, vars);
 		else
-			draw_line_low(x0, y0, x1, y1);
+			draw_line_low(data, vars);
 	}
 	else
-		if (y0 > y1)
-			draw_line_high(x1, y1, x0, y0);
+		if (data->y0 > data->y1)
+			draw_line_high(data, vars);
 		else
-			draw_line_high(x0, y0, x1, y1);
+			draw_line_high(data, vars);
 }
