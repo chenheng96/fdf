@@ -1,12 +1,12 @@
 FDF		= fdf
-SRCS	= ft_mat_mul.c #fdf.c draw_line.c parse_map.c
+SRCS	= fdf.c
 
 CC		= gcc
 CFLAGS	= -fsanitize=address -g3 -Wall -Werror -Wextra
 
-INCLUDE = -Iinclude -Ilibft #/usr/local/include
-LDFLAGS = -Llibft #/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-LDLIBS	= -lft #-lm
+INCLUDE = -Iinclude -Ilibft -I/usr/local/include
+LDFLAGS = -Llibft -L/usr/local/lib/
+LDLIBS	= -lft -lm -lmlx -framework OpenGL -framework AppKit
 
 LIBFT	= libft/libft.a
 
@@ -31,12 +31,12 @@ fclean:	clean
 re:		fclean all
 
 matrix:	${LIBFT}
-		${CC} matrix_multiplication.c test_matrix_multiplication.c matrix_helper.c fdf_helper.c -o matrix ${CFLAGS} ${INCLUDE} -Llibft -lft
+		${CC} matrix_multiplication.c test_matrix_multiplication.c matrix_helper.c fdf_helper.c -o matrix ${CFLAGS} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
 		./matrix
 		${RM} matrix
 
 parse:	${LIBFT}
-		${CC} parse_map.c test_parse_map.c matrix_multiplication.c affine_rotation.c matrix_helper.c parse_map_helper.c fdf_helper.c -o parse ${CFLAGS} ${INCLUDE} -Llibft -lft -lm
+		${CC} parse_map.c test_parse_map.c matrix_multiplication.c affine_rotation.c matrix_helper.c parse_map_helper.c fdf_helper.c -o parse ${CFLAGS} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
 		./parse
 		${RM} parse
 
