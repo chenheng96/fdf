@@ -25,7 +25,7 @@ void	test_parse_map(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	open_file("test_maps/test.fdf", map);
+	open_file("test_maps/basictest.fdf", map);
 	fill_map(map);
 	map->transform = ft_mat_identity(4);
 	while (++i < map->row * map->col)
@@ -48,7 +48,7 @@ void	test_iso(void)
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
 		ft_perror("test_parse_map error\n");
-	open_file("test_maps/test.fdf", map);
+	open_file("test_maps/basictest.fdf", map);
 	fill_map(map);
 	map->transform = ft_rotate_x(35.264);
 	trans = ft_rotate_y(45);
@@ -146,19 +146,7 @@ void	test_count_col(void)
 
 int	main(void)
 {
-	// test_count_col();
+	test_count_col();
 	test_parse_map();
 	test_iso();
 }
-
-// int	main(void)
-// {
-// 	char 	*str = "1 2 3 4 5";
-// 	char	**str2 = ft_split(str, ' ');
-// 	int	i = -1;
-
-// 	while (++i < 5)
-// 	{
-// 		printf("%i\n", ft_atoi(str2[i]));
-// 	}
-// }
