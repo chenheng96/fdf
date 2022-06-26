@@ -21,6 +21,9 @@ void	ft_perror(const char *s)
 	exit(EXIT_FAILURE);
 }
 
+/*
+To malloc size and crash the program if malloc fails.
+*/
 void	*ft_malloc(size_t size)
 {
 	void	*ptr;
@@ -31,6 +34,9 @@ void	*ft_malloc(size_t size)
 	return (ptr);
 }
 
+/*
+To open file and crash the program if open fails.
+*/
 int	ft_open(const char *pathname, int flags)
 {
 	int	fd;
