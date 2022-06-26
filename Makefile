@@ -1,5 +1,5 @@
 FDF		= fdf
-SRCS	= fdf.c affine_rotation.c affine_transformation.c draw_line.c fdf_helper.c matrix_helper.c matrix_multiplication.c parse_map.c parse_map_helper.c
+SRCS	= fdf.c affine_rotation.c affine_transformation.c draw_line.c draw_line_helper.c fdf_helper.c handle_key.c matrix_helper.c matrix_multiplication.c parse_map.c parse_map_helper.c
 
 CC		= gcc
 CFLAGS	= -fsanitize=address -g3 #-Wall -Werror -Wextra
