@@ -12,6 +12,9 @@
 
 #include "fdf.h"
 
+/*
+To return the absolute value of int.
+*/
 int	abs(int n)
 {
 	if (n >= 0)
@@ -19,6 +22,20 @@ int	abs(int n)
 	return (-n);
 }
 
+/*
+To plot pixel in an image.
+*/
+void	my_mlxpixelput(t_vars *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+/*
+To draw line with less than 1 gradient.
+*/
 void	draw_line_low(t_data *data, t_vars *vars)
 {
 	data->x = -1;
@@ -45,6 +62,9 @@ void	draw_line_low(t_data *data, t_vars *vars)
 	}
 }
 
+/*
+To draw line with more than 1 gradient.
+*/
 void	draw_line_high(t_data *data, t_vars *vars)
 {
 	data->y = -1;
@@ -71,6 +91,10 @@ void	draw_line_high(t_data *data, t_vars *vars)
 	}
 }
 
+/*
+To check if first coordinates is before or after second coordinates.
+Then, call draw_line_low/high accordingly.
+*/
 void	draw_line(t_data *data, t_vars *vars)
 {
 	if (abs(data->y1 - data->y0) < abs(data->x1 - data->x0))
