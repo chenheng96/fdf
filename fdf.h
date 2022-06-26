@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+// # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -60,16 +60,19 @@ typedef struct s_data {
 	int	y;
 }	t_data;
 
-// mlx functions
-void	my_mlxpixelput(t_vars *data, int x, int y, int color);
-int		handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
+// mlx related functions
+void	handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
+void    new_frame(t_data *data, t_vars *vars, t_map *map);
 void	ft_vars_del(t_vars *vars);
 
 // line drawing algorithm
 int		abs(int n);
+void	my_mlxpixelput(t_vars *data, int x, int y, int color);
 void	draw_line(t_data *data, t_vars *vars);
 void	draw_line_low(t_data *data, t_vars *vars);
 void	draw_line_high(t_data *data, t_vars *vars);
+void	set_coordinates(t_data *data, t_map *map, size_t k, size_t n);
+void	connect_dot(t_data *data, t_vars *vars, t_map *map);
 
 // map parsing
 void	open_file(char *str, t_map *map);
