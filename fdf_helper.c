@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 14:20:19 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:25:02 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void    new_frame(t_data *data, t_vars *vars, t_map *map)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	while (++k < map->row * map->col)
 	{
+		print_mat(map->transform);
+		print_mat(map->map[k]);
 		temp = ft_mat_mul(map->transform, map->map[k]);
 		ft_mat_del(map->map[k]);
 		map->map[k] = temp;

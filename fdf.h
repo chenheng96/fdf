@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 13:03:55 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:25:59 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_mat	*ft_mat_mul(t_mat *A, t_mat *B);
 double	ft_get_val(t_mat *mat, size_t row, size_t col);
 void	ft_set_val(t_mat *mat, size_t row, size_t col, double value);
 int		compare_mat(t_mat *A, t_mat *B);
+void	print_mat(t_mat *mat);
 
 // affine transformation
 t_mat	*ft_translate(double x, double y, double z);

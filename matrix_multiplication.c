@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:30:20 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 14:48:43 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:25:36 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ t_mat	*ft_mat_new(size_t row, size_t col)
 	if (mat->data == NULL)
 		ft_perror("ft_mat_new error");
 	return (mat);
+}
+
+/*
+To print out the matrix.
+*/
+void	print_mat(t_mat *mat)
+{
+	size_t	i = -1;
+
+	while (++i < mat->row * mat->col)
+	{
+		printf("%i ", (int)mat->data[i]);
+		if((i + 1)% mat->col == 0)
+			printf("\n");
+	}
 }
 
 /*
