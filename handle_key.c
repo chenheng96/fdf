@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_key.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 10:51:18 by cchong            #+#    #+#             */
+/*   Updated: 2022/06/27 15:12:45 by cchong           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void    handle_xyz(int keycode, t_vars *vars, t_map *map, t_data *data)
@@ -5,9 +17,9 @@ void    handle_xyz(int keycode, t_vars *vars, t_map *map, t_data *data)
     t_mat   *mat;
     t_mat   *temp;
 
-    if (keycode == 'x')
+    if (keycode == 7)
         mat = ft_rotate_x(20);
-    else if (keycode == 'y')
+    else if (keycode == 16)
         mat = ft_rotate_y(20);
     else
         mat = ft_rotate_z(20);
@@ -20,8 +32,6 @@ void    handle_xyz(int keycode, t_vars *vars, t_map *map, t_data *data)
 
 void    handle_translate(int keycode, t_vars *vars, t_map *map, t_data *data)
 {
-    t_mat   *mat;
-    t_mat   *temp;
     double  x;
     double  y;
     double  z;
@@ -29,19 +39,16 @@ void    handle_translate(int keycode, t_vars *vars, t_map *map, t_data *data)
     x = 0;
     y = 0;
     z = 0;
-    if (keycode == 'up')
+    if (keycode == 126)
         y = -20;
-    else if (keycode == 'down')
+    else if (keycode == 125)
         y = 20;
-    else if (keycode == 'left')
+    else if (keycode == 123)
         x = -20;
     else
         x = 20;
-    mat = ft_translate(x, y, z);
-    temp = ft_mat_mul(map->transform, mat);
-    ft_mat_del(map->transform);
-    ft_mat_del(mat);
-    map->transform = temp;
+	// ft_mat_del(map->transform);
+    map->transform = ft_translate(x, y, z);
     new_frame(data, vars, map);
 }
 
@@ -56,7 +63,7 @@ void    handle_scale(int keycode, t_vars *vars, t_map *map, t_data *data)
     x = 20;
     y = 20;
     z = 0;
-    if (keycode == '-')
+    if (keycode == 27)
     {
         x = -x;
         y = -y;
@@ -80,7 +87,7 @@ void    handle_shear(int keycode, t_vars *vars, t_map *map, t_data *data)
     x = 20;
     y = 20;
     z = 0;
-    if (keycode == 'q')
+    if (keycode == 12)
     {
         x = -x;
         y = -y;
@@ -96,24 +103,25 @@ void    handle_shear(int keycode, t_vars *vars, t_map *map, t_data *data)
 /*
 To handle events when certain keys are pressed.
 */
-void	handle_key(int keycode, t_vars *vars, t_map *map, t_data *data)
+int	handle_key(int keycode, t_vars *vars, t_map *map, t_data *data)
 {
-	if (keycode == 53 || keycode == 'close window')
+	if (keycode == 53) //lack close window
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		ft_map_del(map);
+		// ft_map_del(map);
 		ft_vars_del(vars);
-		free(data);
+		// free(data);
 		exit(EXIT_SUCCESS);
 	}
-	else if (keycode == 'x' || keycode == 'y' || keycode == 'z')
+	else if (keycode == 7 || keycode == 16 || keycode == 6)
         handle_xyz(keycode, vars, map, data);
-    else if (keycode == 'up' || keycode == 'down' || keycode == 'left' || keycode == 'right')
+    else if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
         handle_translate(keycode, vars, map, data);
-    else if (keycode == '+' || keycode == '-')
+    else if (keycode == 24 || keycode == 27)
         handle_scale(keycode, vars, map, data);
-    else if (keycode == 'q' || keycode == 'r')
+    else if (keycode == 12 || keycode == 13)
         handle_shear(keycode, vars, map, data);
 	else
 		ft_putnbr_fd(keycode, 1);
+	return (0);
 }

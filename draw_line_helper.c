@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line_helper.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 10:51:06 by cchong            #+#    #+#             */
+/*   Updated: 2022/06/27 14:44:41 by cchong           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 /*
@@ -25,9 +37,9 @@ void	connect_dot(t_data *data, t_vars *vars, t_map *map)
     while (++i < map->row)
     {
         j = -1;
-        while (++j < map->column)
+        while (++j < map->col)
         {
-            if (j != map->column - 1)
+            if (j != map->col - 1)
             {
                 set_coordinates(data, map, k, 1);
                 draw_line(data, vars);

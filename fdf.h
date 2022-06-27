@@ -6,14 +6,14 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/24 15:32:31 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/27 13:03:55 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-// # include <mlx.h>
+# include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -61,13 +61,13 @@ typedef struct s_data {
 }	t_data;
 
 // mlx related functions
-void	handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
+int		handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
 void    new_frame(t_data *data, t_vars *vars, t_map *map);
 void	ft_vars_del(t_vars *vars);
 
 // line drawing algorithm
 int		abs(int n);
-void	my_mlxpixelput(t_vars *data, int x, int y, int color);
+void	my_mlxpixelput(t_vars *vars, int x, int y, int color);
 void	draw_line(t_data *data, t_vars *vars);
 void	draw_line_low(t_data *data, t_vars *vars);
 void	draw_line_high(t_data *data, t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:47:24 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/24 14:44:50 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:59:57 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	abs(int n)
 /*
 To plot pixel in an image.
 */
-void	my_mlxpixelput(t_vars *data, int x, int y, int color)
+void	my_mlxpixelput(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -38,6 +38,7 @@ To draw line with less than 1 gradient.
 */
 void	draw_line_low(t_data *data, t_vars *vars)
 {
+	my_mlxpixelput(vars, 10, 10, 0xFF0000);
 	data->x = -1;
 	data->dx = data->x1 - data->x0;
 	data->dy = data->y1 - data->y0;
@@ -51,7 +52,7 @@ void	draw_line_low(t_data *data, t_vars *vars)
 	data->y = data->y0;
 	while (++data->x < data->x1)
 	{
-		my_mlxpixelput(vars, data->x, data->y, 0xFF0000);
+		my_mlxpixelput(vars, data->x, data->y, 0x00FF0000);
 		if (data->D > 0)
 		{
 			data->y += data->yi;
@@ -67,6 +68,7 @@ To draw line with more than 1 gradient.
 */
 void	draw_line_high(t_data *data, t_vars *vars)
 {
+	my_mlxpixelput(vars, 20, 20, 0xFF0000);
 	data->y = -1;
 	data->dx = data->x1 - data->x0;
 	data->dy = data->y1 - data->y0;
@@ -80,7 +82,7 @@ void	draw_line_high(t_data *data, t_vars *vars)
 	data->x = data->x0;
 	while (++data->y < data->y1)
 	{
-		my_mlxpixelput(vars, data->x, data->y, 0xFF0000);
+		my_mlxpixelput(vars, data->x, data->y, 0x00FF0000);
 		if (data->D > 0)
 		{
 			data->x += data->xi;
