@@ -1,20 +1,5 @@
 #include "fdf.h"
 
-/*
-To print out the matrix.
-*/
-void	print_mat(t_mat *mat)
-{
-	size_t	i = -1;
-
-	while (++i < mat->row * mat->col)
-	{
-		printf("%i ", (int)mat->data[i]);
-		if((i + 1)% mat->col == 0)
-			printf("\n");
-	}
-}
-
 void	test_connect_dot(void)
 {
 	t_map	*map;
@@ -38,7 +23,7 @@ void	test_connect_dot(void)
 	printf("row %li\ncol %li\n", map->row, map->col);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, 1920, 1080, "FDF");
-	new_frame(data, vars, map);
+	new_frame(vars);
 	mlx_hook(vars->win, 2, 1L << 0, handle_key, vars);
 	mlx_loop(vars->mlx);
 }

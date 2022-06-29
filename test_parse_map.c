@@ -4,18 +4,6 @@
 
 size_t	count_col(char *str);
 
-void	print_mat(t_mat *mat)
-{
-	size_t	i = -1;
-
-	while (++i < mat->row * mat->col)
-	{
-		printf("%f ", mat->data[i]);
-		if ((i + 1)% mat->col == 0)
-			printf("\n");
-	}
-}
-
 void	test_parse_map(void)
 {
 	t_map	*map;

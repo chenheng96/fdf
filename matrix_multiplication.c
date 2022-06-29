@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:30:20 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 15:25:36 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 14:06:37 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	print_mat(t_mat *mat)
 {
 	size_t	i = -1;
 
+	printf("row:%li col:%li\n", mat->row, mat->col);
 	while (++i < mat->row * mat->col)
 	{
 		printf("%i ", (int)mat->data[i]);

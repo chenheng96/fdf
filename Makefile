@@ -3,7 +3,7 @@ SRCS	= fdf.c affine_rotation.c affine_transformation.c draw_line.c draw_line_hel
 SRCS2	= affine_rotation.c affine_transformation.c draw_line.c draw_line_helper.c fdf_helper.c handle_key.c matrix_helper.c matrix_multiplication.c parse_map.c parse_map_helper.c
 
 CC		= gcc
-CFLAGS	= -fsanitize=address -g3 -Wall -Werror -Wextra
+CFLAGS	= -fsanitize=address -g3 #-Wall -Werror -Wextra
 
 INCLUDE = -Iinclude -Ilibft -I/usr/local/include
 LDFLAGS = -Llibft -L/usr/local/lib/

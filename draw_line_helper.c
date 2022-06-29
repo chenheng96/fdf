@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 14:44:41 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 14:28:28 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_coordinates(t_data *data, t_map *map, size_t k, size_t n)
 /*
 To connect all the points in the map->map struct.
 */
-void	connect_dot(t_data *data, t_vars *vars, t_map *map)
+void	connect_dot(t_vars *vars)
 {
     size_t  i;
     size_t  j;
@@ -34,20 +34,20 @@ void	connect_dot(t_data *data, t_vars *vars, t_map *map)
 
     k = 0;
     i = -1;
-    while (++i < map->row)
+    while (++i < vars->map->row)
     {
         j = -1;
-        while (++j < map->col)
+        while (++j < vars->map->col)
         {
-            if (j != map->col - 1)
+            if (j != vars->map->col - 1)
             {
-                set_coordinates(data, map, k, 1);
-                draw_line(data, vars);
+                set_coordinates(vars->data, vars->map, k, 1);
+                draw_line(vars->data, vars);
             }
-            if (i != map->row - 1)
+            if (i != vars->map->row - 1)
             {
-                set_coordinates(data, map, k, map->col);
-                draw_line(data, vars);
+                set_coordinates(vars->data, vars->map, k, vars->map->col);
+                draw_line(vars->data, vars);
             }
             ++k;
         }

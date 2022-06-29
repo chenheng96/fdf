@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 15:25:02 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 15:44:44 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,29 @@ void	ft_vars_del(t_vars *vars)
 }
 
 /*
-To multiply the map->map[k] with trans mat and put the new frame onto the window.
-Also reset the transform mat after transforming map->map[k].
+To multiply the vars->map->map[k] with trans mat and put the new frame onto the window.
+Also reset the transform mat after transforming vars->map->map[k].
 */
-void    new_frame(t_data *data, t_vars *vars, t_map *map)
+void    new_frame(t_vars *vars)
 {
     size_t	k;
 	t_mat	*temp;
 
 	k = -1;
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
-	while (++k < map->row * map->col)
+	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
+			&vars->line_length, &vars->endian);
+	while (++k < vars->map->row * vars->map->col)
 	{
-		print_mat(map->transform);
-		print_mat(map->map[k]);
-		temp = ft_mat_mul(map->transform, map->map[k]);
-		ft_mat_del(map->map[k]);
-		map->map[k] = temp;
+		temp = ft_mat_mul(vars->map->transform, vars->map->map[k]);
+		ft_mat_del(vars->map->map[k]);
+		vars->map->map[k] = temp;
 	}
-	ft_mat_del(map->transform);
-	map->transform = ft_mat_identity(4);
-	connect_dot(data, vars, map);
+	ft_mat_del(vars->map->transform);
+	vars->map->transform = ft_mat_identity(4);
+	connect_dot(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	free(vars->img);
 }
 
 /*

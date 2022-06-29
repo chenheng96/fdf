@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 15:25:59 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 15:34:57 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,6 @@ typedef struct s_map {
 	t_mat	*transform;
 }	t_map;
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_vars;
-
 typedef struct s_data {
 	int	x0;
 	int	x1;
@@ -60,9 +50,21 @@ typedef struct s_data {
 	int	y;
 }	t_data;
 
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	t_map	*map;
+	t_data	*data;
+}	t_vars;
+
 // mlx related functions
-int		handle_key(int keycode, t_vars *vars, t_map *map, t_data *data);
-void    new_frame(t_data *data, t_vars *vars, t_map *map);
+int		handle_key(int keycode, t_vars *vars);
+void	new_frame(t_vars *vars);
 void	ft_vars_del(t_vars *vars);
 
 // line drawing algorithm
@@ -72,7 +74,7 @@ void	draw_line(t_data *data, t_vars *vars);
 void	draw_line_low(t_data *data, t_vars *vars);
 void	draw_line_high(t_data *data, t_vars *vars);
 void	set_coordinates(t_data *data, t_map *map, size_t k, size_t n);
-void	connect_dot(t_data *data, t_vars *vars, t_map *map);
+void	connect_dot(t_vars *vars);
 
 // map parsing
 void	open_file(char *str, t_map *map);

@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 14:37:18 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 14:11:33 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	fill_map(t_map *map)
 	size_t	k;
 	double	n;
 
-	n = 100;
+	n = 10;
 	map->map = malloc(sizeof(t_map) * map->row * map->col);
 	k = -1;
 	while (++k < map->row * map->col)

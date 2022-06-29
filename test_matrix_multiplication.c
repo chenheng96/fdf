@@ -6,27 +6,12 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:29:54 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 16:57:23 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 12:22:33 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
-
-/*
-To print out the matrix.
-*/
-void	print_mat(t_mat *mat)
-{
-	size_t	i = -1;
-
-	while (++i < mat->row * mat->col)
-	{
-		printf("%i ", (int)mat->data[i]);
-		if((i + 1)% mat->col == 0)
-			printf("\n");
-	}
-}
 
 /*
 To compare the info in mat data struct.

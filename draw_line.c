@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:47:24 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/27 14:59:57 by cchong           ###   ########.fr       */
+/*   Updated: 2022/06/29 14:29:25 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ To draw line with less than 1 gradient.
 */
 void	draw_line_low(t_data *data, t_vars *vars)
 {
-	my_mlxpixelput(vars, 10, 10, 0xFF0000);
 	data->x = -1;
 	data->dx = data->x1 - data->x0;
 	data->dy = data->y1 - data->y0;
@@ -68,7 +67,6 @@ To draw line with more than 1 gradient.
 */
 void	draw_line_high(t_data *data, t_vars *vars)
 {
-	my_mlxpixelput(vars, 20, 20, 0xFF0000);
 	data->y = -1;
 	data->dx = data->x1 - data->x0;
 	data->dy = data->y1 - data->y0;
