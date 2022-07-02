@@ -73,8 +73,6 @@ void    handle_scale(int keycode, t_vars *vars)
 
 void    handle_shear(int keycode, t_vars *vars)
 {
-    t_mat   *mat;
-    t_mat   *temp;
     double  x;
     double  y;
     double  z;
@@ -87,11 +85,8 @@ void    handle_shear(int keycode, t_vars *vars)
         x = -x;
         y = -y;
     }
-    mat = ft_scale(x, y, z);
-    temp = ft_mat_mul(vars->map->transform, mat);
     ft_mat_del(vars->map->transform);
-    ft_mat_del(mat);
-    vars->map->transform = temp;
+    vars->map->transform = ft_scale(x, y, z);
     new_frame(vars);
 }
 
