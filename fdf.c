@@ -23,12 +23,14 @@ int	main(int argc, char **argv)
 	vars->map->transform = ft_mat_identity(4);
 	vars->data = ft_malloc(sizeof(t_data));
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 1920, 1080, "FDF");
-	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF");
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	open_file(argv[1], vars->map);
 	connect_dot(vars);
+	handle_xyz(7, vars);
+	handle_xyz(16, vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	free(vars->img);
 	mlx_hook(vars->win, 2, 1L << 0, handle_key, vars);
