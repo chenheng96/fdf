@@ -42,17 +42,7 @@ parse:	${LIBFT}
 		./parse
 		${RM} parse
 
-draw:	${LIBFT}
-		${CC} test_connect_dot.c -o draw ${SRCS2} ${CFLAGS} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
-		./draw
-		${RM} draw
-
-pixel:	${LIBFT}
-		${CC} test_pixelput.c -o pixel ${CFLAGS} ${INCLUDE} ${LDFLAGS} ${LDLIBS}
-		./pixel
-		${RM} pixel
-
 norm:
 		norminette *.c *.h
 
-.PHONY: all clean fclean re libft norm matrix parse draw
+.PHONY: all clean fclean re libft norm matrix parse
