@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:47:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/05 10:10:47 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/05 11:38:46 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	main(int argc, char **argv)
 			&vars->line_length, &vars->endian);
 	open_file(argv[1], vars->map);
 	connect_dot(vars);
-	// handle_xyz(7, vars);
-	// handle_xyz(16, vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	// free(vars->img);
 	mlx_hook(vars->win, 2, 1L << 0, handle_key, vars);
 	mlx_loop(vars->mlx);
 }
