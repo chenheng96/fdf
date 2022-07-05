@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/29 14:28:28 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/05 16:02:05 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	set_coordinates(t_vars *vars, t_map *map, size_t k, size_t n)
 
     x0 = ft_get_val(map->map[k], 0, 0);
     x1 = ft_get_val(map->map[k + n], 0, 0);
-    y0 = ft_get_val(map->map[k], 1, 0) - ft_get_val(map->map[k], 2, 0);
-    y1 = ft_get_val(map->map[k + n], 1, 0) - ft_get_val(map->map[k + n], 2, 0);
+    y0 = ft_get_val(map->map[k], 1, 0);
+    y1 = ft_get_val(map->map[k + n], 1, 0);
     if (x0 >= 0 && x0 < WIDTH && x1 >= 0 && x1 < WIDTH && y0 >= 0 && y0 < HEIGHT
         && y1 >= 0 && y1 < HEIGHT)
     {

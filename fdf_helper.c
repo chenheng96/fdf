@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/29 15:44:44 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/05 16:13:21 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    new_frame(t_vars *vars)
 	t_mat	*temp;
 
 	k = -1;
-	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	while (++k < vars->map->row * vars->map->col)

@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/29 14:11:33 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/05 16:00:54 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	open_file(char *str, t_map *map)
 
 	fd = ft_open(str, O_RDONLY);
 	map->row = countrow_checkcol(str, map);
-	map->data = malloc(sizeof(double) * map->row);
+	map->data = ft_malloc(sizeof(double) * map->row);
 	parse_map(fd, map);
 }
 
@@ -43,7 +43,7 @@ void	parse_map(int fd, t_map *map)
 		if (s == NULL)
 			break ;
 		arr = ft_split(s, ' ');
-		map->data[++i] = malloc(sizeof(double) * map->col);
+		map->data[++i] = ft_malloc(sizeof(double) * map->col);
 		j = -1;
 		while (++j < map->col)
 		{
@@ -69,7 +69,7 @@ void	fill_map(t_map *map)
 	double	n;
 
 	n = 10;
-	map->map = malloc(sizeof(t_map) * map->row * map->col);
+	map->map = ft_malloc(sizeof(t_map) * map->row * map->col);
 	k = -1;
 	while (++k < map->row * map->col)
 		map->map[k] = ft_mat_new(4, 1);

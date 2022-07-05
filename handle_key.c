@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:18 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/05 13:13:33 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/05 16:49:45 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void    handle_xyz(int keycode, t_vars *vars)
     t_mat   *temp;
 
     if (keycode == 7)
-        mat = ft_rotate_x(40);
+        mat = ft_rotate_x(55);
     else if (keycode == 16)
         mat = ft_rotate_y(40);
     else
-        mat = ft_rotate_z(40);
+        mat = ft_rotate_z(45);
     temp = ft_mat_mul(vars->map->transform, mat);
     ft_mat_del(vars->map->transform);
     ft_mat_del(mat);
