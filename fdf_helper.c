@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/05 16:13:21 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:24:18 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	ft_vars_del(t_vars *vars)
 }
 
 /*
-To multiply the vars->map->map[k] with trans mat and put the new frame onto the window.
-Also reset the transform mat after transforming vars->map->map[k].
+To multiply the vars->map->map[k] with trans mat and put the new frame onto the 
+window. Also reset the transform mat after transforming vars->map->map[k].
 */
-void    new_frame(t_vars *vars)
+void	new_frame(t_vars *vars)
 {
-    size_t	k;
+	size_t	k;
 	t_mat	*temp;
 
 	k = -1;
@@ -47,6 +47,15 @@ void    new_frame(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	free(vars->img);
 }
+
+	// printf("\nmap[i]\n");
+	// size_t i = -1;
+	// while (++i < vars->map->row * vars->map->col)
+	// {
+	// 	print_mat(vars->map->map[i]);
+	// 	printf("\n");
+	// }
+	// printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
 
 /*
 To print an error msg and crash the program.

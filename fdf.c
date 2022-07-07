@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:47:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/05 16:19:09 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:24:33 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	vars = ft_malloc(sizeof(t_vars));
 	vars->map = ft_malloc(sizeof(t_map));
 	vars->map->transform = ft_mat_identity(4);
-	vars->data = ft_malloc(sizeof(t_data));
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF");
 	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
@@ -33,3 +32,11 @@ int	main(int argc, char **argv)
 	mlx_hook(vars->win, 2, 1L << 0, handle_key, vars);
 	mlx_loop(vars->mlx);
 }
+
+	// size_t i = -1;
+	// while (++i < vars->map->row * vars->map->col)
+	// {
+	// 	print_mat(vars->map->map[i]);
+	// 	printf("\n");
+	// }
+	// printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
