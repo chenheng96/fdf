@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:47:24 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/07 17:14:01 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:16:06 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	draw_line_low(t_vars *vars)
 	d = (2 * dy) - dx;
 	while (++vars->x0 < vars->x1)
 	{
-		my_mlxpixelput(vars, vars->x0, vars->y0, 0x00FF0000);
+		if (vars->x0 >= 0 && vars->x0 < WIDTH && vars->y0 >= 0 && vars->y0 < HEIGHT)
+			my_mlxpixelput(vars, vars->x0, vars->y0, 0x00FF0000);
 		if (d > 0)
 		{
 			vars->y0 += yi;
@@ -86,7 +87,8 @@ void	draw_line_high(t_vars *vars)
 	d = (2 * dx) - dy;
 	while (++vars->y0 < vars->y1)
 	{
-		my_mlxpixelput(vars, vars->x0, vars->y0, 0x00FF0000);
+		if (vars->x0 >= 0 && vars->x0 < WIDTH && vars->y0 >= 0 && vars->y0 < HEIGHT)
+			my_mlxpixelput(vars, vars->x0, vars->y0, 0x00FF0000);
 		if (d > 0)
 		{
 			vars->x0 += xi;

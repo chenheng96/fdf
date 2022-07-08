@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/07 17:22:23 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 10:08:22 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_map {
 	size_t	row;
 	size_t	col;
 	double	**data;
-	t_mat	**map;
+	t_mat	**coor;
 	t_mat	*transform;
 }	t_map;
 
@@ -54,9 +54,10 @@ typedef struct s_vars {
 }	t_vars;
 
 // mlx related functions
+t_vars	*ft_vars_new(void);
+void	ft_vars_del(t_vars *vars);
 int		handle_key(int keycode, t_vars *vars);
 void	new_frame(t_vars *vars);
-void	ft_vars_del(t_vars *vars);
 void	handle_xyz(int keycode, t_vars *vars);
 
 // line drawing algorithm
@@ -69,8 +70,8 @@ void	set_coordinates(t_vars *vars, t_map *map, size_t k, size_t n);
 void	connect_dot(t_vars *vars);
 
 // map parsing
-void	open_file(char *str, t_map *map);
-void	parse_map(int fd, t_map *map);
+void	parse_map1(char *str, t_map *map);
+void	parse_map2(int fd, t_map *map);
 void	fill_map(t_map *map);
 void	ft_map_del(t_map *map);
 size_t	countrow_checkcol(char	*str, t_map *map);

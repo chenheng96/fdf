@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:54:32 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 15:00:39 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 10:07:52 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_map_del(t_map *map)
 	free(map->data);
 	i = -1;
 	while (++i < map->row * map->col)
-		ft_mat_del(map->map[i]);
-	free(map->map);
+		ft_mat_del(map->coor[i]);
+	free(map->coor);
 	ft_mat_del(map->transform);
 	free(map);
 }

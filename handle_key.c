@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:18 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/07 20:03:14 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:10:35 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_xyz(int keycode, t_vars *vars)
 	t_mat	*temp;
 
 	if (keycode == 7)
-		mat = ft_rotate_x(35.264-90); // 35.264 / 90 - 35.264 / -35.264 / 35.264 - 90
+		mat = ft_rotate_x(-90+35.264); // 35.264 / 90 - 35.264 / -35.264 / 35.264 - 90
 	else if (keycode == 16)
 		mat = ft_rotate_y(10);
 	else
@@ -58,13 +58,13 @@ void	handle_scale(int keycode, t_vars *vars)
 	double	y;
 	double	z;
 
-	x = 20;
-	y = 20;
+	x = 0.5;
+	y = 0.5;
 	z = 0;
-	if (keycode == 27)
+	if (keycode == 24)
 	{
-		x = -x;
-		y = -y;
+		x = 2;
+		y = 2;
 	}
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_scale(x, y, z);

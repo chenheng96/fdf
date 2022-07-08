@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/07 20:01:43 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 10:07:52 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 Open file and pass struct and fd to parse_map.
 Need to count row and col before allocating mem for mat.
 */
-void	open_file(char *str, t_map *map)
+void	parse_map1(char *str, t_map *map)
 {
 	int		fd;
 
 	fd = ft_open(str, O_RDONLY);
 	map->row = countrow_checkcol(str, map);
 	map->data = ft_malloc(sizeof(double) * map->row);
-	parse_map(fd, map);
+	parse_map2(fd, map);
 }
 
 /*
 Parse map into matrix.
 */
-void	parse_map(int fd, t_map *map)
+void	parse_map2(int fd, t_map *map)
 {
 	size_t	i;
 	size_t	j;
@@ -59,7 +59,7 @@ void	parse_map(int fd, t_map *map)
 }
 
 /*
-To fill in the matrix in map->map with data from map->data.
+To fill in the matrix in map->coor with data from map->data.
 */
 void	fill_map(t_map *map)
 {
@@ -69,10 +69,10 @@ void	fill_map(t_map *map)
 	double	n;
 
 	n = 25;
-	map->map = ft_malloc(sizeof(t_map) * map->row * map->col);
+	map->coor = ft_malloc(sizeof(t_map) * map->row * map->col);
 	k = -1;
 	while (++k < map->row * map->col)
-		map->map[k] = ft_mat_new(4, 1);
+		map->coor[k] = ft_mat_new(4, 1);
 	k = 0;
 	i = -1;
 	while (++i < map->row)
@@ -80,10 +80,10 @@ void	fill_map(t_map *map)
 		j = -1;
 		while (++j < map->col)
 		{
-			ft_set_val(map->map[k], 0, 0, j * n);
-			ft_set_val(map->map[k], 1, 0, i * n);
-			ft_set_val(map->map[k], 2, 0, map->data[i][j] * n); // n / -n
-			ft_set_val(map->map[k], 3, 0, 1);
+			ft_set_val(map->coor[k], 0, 0, j * n);
+			ft_set_val(map->coor[k], 1, 0, i * n);
+			ft_set_val(map->coor[k], 2, 0, map->data[i][j] * n); // n / -n
+			ft_set_val(map->coor[k], 3, 0, 1);
 			++k;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/07 19:52:26 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 10:57:55 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_vars_del(t_vars *vars)
 }
 
 /*
-To multiply the vars->map->map[k] with trans mat and put the new frame onto the 
-window. Also reset the transform mat after transforming vars->map->map[k].
+To multiply the vars->map->coor[k] with trans mat and put the new frame onto the 
+window. Also reset the transform mat after transforming vars->map->coor[k].
 */
 void	new_frame(t_vars *vars)
 {
@@ -37,12 +37,20 @@ void	new_frame(t_vars *vars)
 			&vars->line_length, &vars->endian);
 	while (++k < vars->map->row * vars->map->col)
 	{
-		temp = ft_mat_mul(vars->map->transform, vars->map->map[k]);
-		ft_mat_del(vars->map->map[k]);
-		vars->map->map[k] = temp;
+		temp = ft_mat_mul(vars->map->transform, vars->map->coor[k]);
+		ft_mat_del(vars->map->coor[k]);
+		vars->map->coor[k] = temp;
 	}
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_mat_identity(4);
+	printf("\nmap[i]\n");
+	size_t i = -1;
+	while (++i < vars->map->row * vars->map->col)
+	{
+		print_mat(vars->map->coor[i]);
+		printf("\n");
+	}
+	printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
 	connect_dot(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	free(vars->img);
@@ -52,7 +60,7 @@ void	new_frame(t_vars *vars)
 	// size_t i = -1;
 	// while (++i < vars->map->row * vars->map->col)
 	// {
-	// 	print_mat(vars->map->map[i]);
+	// 	print_mat(vars->map->coor[i]);
 	// 	printf("\n");
 	// }
 	// printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
