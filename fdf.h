@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/08 10:08:22 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:33:49 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 # define FDF_H
 # define WIDTH 1920
 # define HEIGHT 1080
+# define ESC 53
+# define Q 12
+# define W 13
+# define X 7
+# define Y 16
+# define Z 6
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define MINUS 27
+# define PLUS 24
 
 # include <mlx.h>
 # include <math.h>

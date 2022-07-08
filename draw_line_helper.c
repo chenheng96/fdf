@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/08 11:12:49 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:23:09 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,10 @@ To set the x0,y0,x1,y1 in vars struct to coordinates of point a and point b.
 */
 void	set_coordinates(t_vars *vars, t_map *map, size_t k, size_t n)
 {
-	int	x0;
-	int	x1;
-	int	y0;
-	int	y1;
-
-	x0 = ft_get_val(map->coor[k], 0, 0);
-	x1 = ft_get_val(map->coor[k + n], 0, 0);
-	y0 = ft_get_val(map->coor[k], 1, 0);
-	y1 = ft_get_val(map->coor[k + n], 1, 0);
-	vars->x0 = x0;
-	vars->x1 = x1;
-	vars->y0 = y0;
-	vars->y1 = y1;
+	vars->x0 = ft_get_val(map->coor[k], 0, 0);
+	vars->x1 = ft_get_val(map->coor[k + n], 0, 0);
+	vars->y0 = ft_get_val(map->coor[k], 1, 0);
+	vars->y1 = ft_get_val(map->coor[k + n], 1, 0);
 	draw_line(vars);
 }
 
