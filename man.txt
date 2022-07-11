@@ -1,2 +1,0 @@
-man /usr/share/man/man3/mlx.1
-man /usr/share/man/man3/mlx_loop.1
