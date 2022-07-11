@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/08 11:33:49 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 10:09:05 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef struct s_vars {
 	int		y0;
 	int		x1;
 	int		y1;
+	int		max_x;
+	int		min_x;
+	int		max_y;
+	int		min_y;
 	t_map	*map;
 }	t_vars;
 

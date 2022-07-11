@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/08 10:57:55 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 10:52:02 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ void	new_frame(t_vars *vars)
 	}
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_mat_identity(4);
-	printf("\nmap[i]\n");
-	size_t i = -1;
-	while (++i < vars->map->row * vars->map->col)
-	{
-		print_mat(vars->map->coor[i]);
-		printf("\n");
-	}
-	printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
 	connect_dot(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	free(vars->img);
