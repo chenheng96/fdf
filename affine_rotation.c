@@ -6,11 +6,31 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 04:28:13 by cchong            #+#    #+#             */
-/*   Updated: 2022/06/22 14:44:32 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:32:46 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	check_xyminmax(t_vars *vars)
+{
+	if (vars->x0 < vars->min_x)
+		vars->min_x = vars->x0;
+	if (vars->y0 < vars->min_y)
+		vars->min_y = vars->y0;
+	if (vars->x1 > vars->max_x)
+		vars->max_x = vars->x1;
+	if (vars->y1 > vars->max_y)
+		vars->max_y = vars->y1;
+}
+
+void	reset_xy(t_vars *vars)
+{
+	vars->min_x = 0;
+	vars->min_y = 0;
+	vars->max_x = 0;
+	vars->max_y = 0;
+}
 
 /*
 To return a trans mat to rotate 3D models around x coordinates.

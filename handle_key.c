@@ -6,37 +6,11 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:18 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 11:15:31 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:33:01 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	check_midpoint(t_vars *vars)
-{
-	size_t	k;
-
-	k = -1;
-	while (++k < vars->map->row * vars->map->col)
-	{
-		if (vars->x0 < vars->min_x)
-			vars->min_x = vars->x0;
-		if (vars->y0 < vars->min_y)
-			vars->min_y = vars->y0;
-		if (vars->x1 > vars->max_x)
-			vars->max_x = vars->x1;
-		if (vars->y1 > vars->max_y)
-			vars->max_y = vars->y1;
-	}
-}
-
-void	reset_xy(t_vars *vars)
-{
-	vars->min_x = 0;
-	vars->min_y = 0;
-	vars->max_x = 0;
-	vars->max_y = 0;
-}
 
 void	handle_xyz(int keycode, t_vars *vars)
 {
@@ -45,14 +19,14 @@ void	handle_xyz(int keycode, t_vars *vars)
 
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_translate((vars->min_x - vars->max_x) / 2,
-		(vars->min_y - vars->max_y) / 2, 0);
+			(vars->min_y - vars->max_y) / 2, 0);
 	new_frame(vars);
 	if (keycode == X)
-		mat = ft_rotate_x(1); // 35.264 / 90 - 35.264 / -35.264 / 35.264 - 90
+		mat = ft_rotate_x(6);
 	else if (keycode == Y)
-		mat = ft_rotate_y(1);
+		mat = ft_rotate_y(10);
 	else
-		mat = ft_rotate_z(1);
+		mat = ft_rotate_z(7);
 	temp = ft_mat_mul(vars->map->transform, mat);
 	ft_mat_del(vars->map->transform);
 	ft_mat_del(mat);
@@ -60,9 +34,9 @@ void	handle_xyz(int keycode, t_vars *vars)
 	new_frame(vars);
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_translate((vars->max_x - vars->min_x) / 2,
-		(vars->max_y - vars->min_y) / 2, 0);
+			(vars->max_y - vars->min_y) / 2, 0);
 	new_frame(vars);
-	reset_xy(vars);
+	centre_object(vars);
 }
 
 void	handle_translate(int keycode, t_vars *vars)
@@ -108,6 +82,7 @@ void	handle_scale(int keycode, t_vars *vars)
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_scale(x, y, z);
 	new_frame(vars);
+	centre_object(vars);
 }
 
 void	handle_shear(int keycode, t_vars *vars)
@@ -131,6 +106,7 @@ void	handle_shear(int keycode, t_vars *vars)
 	ft_mat_del(vars->map->transform);
 	vars->map->transform = ft_scale(x, y, z);
 	new_frame(vars);
+	centre_object(vars);
 }
 
 /*
@@ -148,7 +124,7 @@ int	handle_key(int keycode, t_vars *vars)
 	else if (keycode == X || keycode == Y || keycode == Z)
 	{
 		handle_xyz(keycode, vars);
-		check_midpoint(vars);
+		check_xyminmax(vars);
 	}
 	else if (keycode == UP || keycode == DOWN || keycode == LEFT
 		|| keycode == RIGHT)

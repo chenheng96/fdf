@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:05:17 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 11:30:51 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:26:33 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	fill_map(t_map *map)
 		{
 			ft_set_val(map->coor[k], 0, 0, j * n);
 			ft_set_val(map->coor[k], 1, 0, i * n);
-			ft_set_val(map->coor[k], 2, 0, map->data[i][j] * -8); // n / -n
+			ft_set_val(map->coor[k], 2, 0, map->data[i][j] * -8);
 			ft_set_val(map->coor[k], 3, 0, 1);
 			++k;
 		}

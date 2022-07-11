@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:25:50 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 10:09:05 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:58:33 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_vars {
 	int		min_x;
 	int		max_y;
 	int		min_y;
+	int		dx;
+	int		dy;
 	t_map	*map;
 }	t_vars;
 
@@ -75,6 +77,9 @@ void	ft_vars_del(t_vars *vars);
 int		handle_key(int keycode, t_vars *vars);
 void	new_frame(t_vars *vars);
 void	handle_xyz(int keycode, t_vars *vars);
+void	reset_xy(t_vars *vars);
+void	check_xyminmax(t_vars *vars);
+void	centre_object(t_vars *vars);
 
 // line drawing algorithm
 int		abs(int n);
@@ -84,6 +89,7 @@ void	draw_line_low(t_vars *vars);
 void	draw_line_high(t_vars *vars);
 void	set_coordinates(t_vars *vars, t_map *map, size_t k, size_t n);
 void	connect_dot(t_vars *vars);
+void	swap_xy(t_vars *vars);
 
 // map parsing
 void	parse_map1(char *str, t_map *map);

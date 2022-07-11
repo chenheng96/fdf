@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 10:51:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 10:23:43 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:55:07 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,17 @@ void	connect_dot(t_vars *vars)
 			++k;
 		}
 	}
+}
+
+void	swap_xy(t_vars *vars)
+{
+	int	temp1;
+	int	temp2;
+
+	temp1 = vars->x0;
+	temp2 = vars->y0;
+	vars->x0 = vars->x1;
+	vars->y0 = vars->y1;
+	vars->x1 = temp1;
+	vars->y1 = temp2;
 }
