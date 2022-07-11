@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 05:32:51 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 15:34:39 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/11 16:06:05 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,6 @@ void	new_frame(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	free(vars->img);
 }
-
-	// printf("\nmap[i]\n");
-	// size_t i = -1;
-	// while (++i < vars->map->row * vars->map->col)
-	// {
-	// 	print_mat(vars->map->coor[i]);
-	// 	printf("\n");
-	// }
-	// printf("row %li\ncol %li\n", vars->map->row, vars->map->col);
 
 /*
 To print an error msg and crash the program.
