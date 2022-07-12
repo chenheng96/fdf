@@ -6,7 +6,7 @@
 /*   By: cchong <cchong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:47:06 by cchong            #+#    #+#             */
-/*   Updated: 2022/07/11 16:05:19 by cchong           ###   ########.fr       */
+/*   Updated: 2022/07/12 09:57:50 by cchong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ t_vars	*ft_vars_new(void)
 	return (vars);
 }
 
+int	close_window(void *param)
+{
+	(void)param;
+	exit(EXIT_SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	*vars;
@@ -38,6 +44,7 @@ int	main(int argc, char **argv)
 	connect_dot(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	mlx_hook(vars->win, 2, 1L << 0, handle_key, vars);
+	mlx_hook(vars->win, 17, 0, close_window, vars);
 	handle_xyz(Z, vars);
 	handle_xyz(X, vars);
 	mlx_loop(vars->mlx);
